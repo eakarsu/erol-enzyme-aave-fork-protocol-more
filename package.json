@@ -2,6 +2,7 @@
   "name": "@devngeni/protocol",
   "version": "1.0.6",
   "description": "The Radar dapp, package fork",
+  "main": "./build/index.js",
   "types": "./build/index.d.ts",
   "files": [
     "build/**/*"
