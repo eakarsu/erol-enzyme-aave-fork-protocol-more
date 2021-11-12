@@ -43,23 +43,15 @@ exports.getFeesManagerConfigArgsData = exports.getPolicyArgsData = exports.getEn
 var ethers_1 = require("ethers");
 var FundDeployer_json_1 = __importDefault(require("./../abis/FundDeployer.json"));
 var fund_1 = require("./../utils/fund");
-var ManagementFee_json_1 = __importDefault(require("./../abis/ManagementFee.json"));
-exports.ManagementFee = ManagementFee_json_1.default;
-var PerformanceFee_json_1 = __importDefault(require("./../abis/PerformanceFee.json"));
-exports.PerformanceFee = PerformanceFee_json_1.default;
-var FeeManager_json_1 = __importDefault(require("./../abis/FeeManager.json"));
-var EntranceRateDirectFee_json_1 = __importDefault(require("./../abis/EntranceRateDirectFee.json"));
-exports.EntranceRateDirectFee = EntranceRateDirectFee_json_1.default;
-var MinMaxInvestment_json_1 = __importDefault(require("./../abis/MinMaxInvestment.json"));
-exports.MinMaxInvestment = MinMaxInvestment_json_1.default;
-var AssetBlacklist_json_1 = __importDefault(require("./../abis/AssetBlacklist.json"));
-exports.AssetBlacklist = AssetBlacklist_json_1.default;
-var AssetWhitelist_json_1 = __importDefault(require("./../abis/AssetWhitelist.json"));
-exports.AssetWhitelist = AssetWhitelist_json_1.default;
-var AdapterBlacklist_json_1 = __importDefault(require("./../abis/AdapterBlacklist.json"));
-exports.AdapterBlacklist = AdapterBlacklist_json_1.default;
-var AdapterWhitelist_json_1 = __importDefault(require("./../abis/AdapterWhitelist.json"));
-exports.AdapterWhitelist = AdapterWhitelist_json_1.default;
+var prep_abis_1 = require("./../prep-abis");
+Object.defineProperty(exports, "AssetWhitelist", { enumerable: true, get: function () { return prep_abis_1.AssetWhitelist; } });
+Object.defineProperty(exports, "AssetBlacklist", { enumerable: true, get: function () { return prep_abis_1.AssetBlacklist; } });
+Object.defineProperty(exports, "AdapterBlacklist", { enumerable: true, get: function () { return prep_abis_1.AdapterBlacklist; } });
+Object.defineProperty(exports, "AdapterWhitelist", { enumerable: true, get: function () { return prep_abis_1.AdapterWhitelist; } });
+Object.defineProperty(exports, "PerformanceFee", { enumerable: true, get: function () { return prep_abis_1.PerformanceFee; } });
+Object.defineProperty(exports, "MinMaxInvestment", { enumerable: true, get: function () { return prep_abis_1.MinMaxInvestment; } });
+Object.defineProperty(exports, "ManagementFee", { enumerable: true, get: function () { return prep_abis_1.ManagementFee; } });
+Object.defineProperty(exports, "EntranceRateDirectFee", { enumerable: true, get: function () { return prep_abis_1.EntranceRateDirectFee; } });
 var createNewFund = function (signer, fundName, denominationAsset, timeLockInSeconds, feeManagerConfig, policyManagerConfigData, gaslimit, provider, address) { return __awaiter(void 0, void 0, void 0, function () {
     var nonce, FundDeployerInterface, fundDeployer, fund;
     return __generator(this, function (_a) {
@@ -128,8 +120,8 @@ var getFeesManagerConfigArgsData = function (fees, feeManagerSettingsData, _sign
             case 0:
                 // remove code
                 console.log(fees, feeManagerSettingsData, _signer, allow);
-                FeeManagerInterface = new ethers_1.ethers.utils.Interface(JSON.parse(JSON.stringify(FeeManager_json_1.default.abi)));
-                feeManager = new ethers_1.ethers.Contract(FeeManager_json_1.default.address, FeeManagerInterface);
+                FeeManagerInterface = new ethers_1.ethers.utils.Interface(JSON.parse(JSON.stringify(prep_abis_1.FeeManager.abi)));
+                feeManager = new ethers_1.ethers.Contract(prep_abis_1.FeeManager.address, FeeManagerInterface);
                 fees_unregister = [];
                 _a.label = 1;
             case 1:
@@ -139,20 +131,20 @@ var getFeesManagerConfigArgsData = function (fees, feeManagerSettingsData, _sign
             case 2:
                 registeredFees = _a.sent();
                 if (!(registeredFees.length === 0)) return [3 /*break*/, 4];
-                fees_unregister = [ManagementFee_json_1.default.address, PerformanceFee_json_1.default.address];
+                fees_unregister = [prep_abis_1.ManagementFee.address, prep_abis_1.PerformanceFee.address];
                 return [4 /*yield*/, feeManager.registerFees(fees_unregister, { gasLimit: 300000 })];
             case 3:
                 _a.sent();
                 return [3 /*break*/, 5];
             case 4:
-                if (!registeredFees.includes(ManagementFee_json_1.default.address)) {
-                    fees_unregister.push(ManagementFee_json_1.default.address);
+                if (!registeredFees.includes(prep_abis_1.ManagementFee.address)) {
+                    fees_unregister.push(prep_abis_1.ManagementFee.address);
                 }
-                if (!registeredFees.includes(PerformanceFee_json_1.default.address)) {
-                    fees_unregister.push(PerformanceFee_json_1.default.address);
+                if (!registeredFees.includes(prep_abis_1.PerformanceFee.address)) {
+                    fees_unregister.push(prep_abis_1.PerformanceFee.address);
                 }
-                if (!registeredFees.includes(EntranceRateDirectFee_json_1.default.address)) {
-                    fees_unregister.push(EntranceRateDirectFee_json_1.default.address);
+                if (!registeredFees.includes(prep_abis_1.EntranceRateDirectFee.address)) {
+                    fees_unregister.push(prep_abis_1.EntranceRateDirectFee.address);
                 }
                 _a.label = 5;
             case 5:

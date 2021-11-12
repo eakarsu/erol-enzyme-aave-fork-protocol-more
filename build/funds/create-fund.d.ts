@@ -1,13 +1,6 @@
 import { ethers, BigNumberish } from "ethers";
 import { AddressLike } from "@enzymefinance/ethers";
-import ManagementFee from "./../abis/ManagementFee.json";
-import PerformanceFee from "./../abis/PerformanceFee.json";
-import EntranceRateDirectFee from "./../abis/EntranceRateDirectFee.json";
-import MinMaxInvestment from "./../abis/MinMaxInvestment.json";
-import AssetBlacklist from "./../abis/AssetBlacklist.json";
-import AssetWhitelist from "./../abis/AssetWhitelist.json";
-import AdapterBlacklist from "./../abis/AdapterBlacklist.json";
-import AdapterWhitelist from "./../abis/AdapterWhitelist.json";
+import { AssetWhitelist, AssetBlacklist, AdapterBlacklist, AdapterWhitelist, PerformanceFee, MinMaxInvestment, ManagementFee, EntranceRateDirectFee } from "./../prep-abis";
 export { PerformanceFee, ManagementFee, EntranceRateDirectFee, MinMaxInvestment, AssetBlacklist, AssetWhitelist, AdapterBlacklist, AdapterWhitelist, };
 export declare const createNewFund: (signer: ethers.Wallet, fundName: string, denominationAsset: string, timeLockInSeconds: number, feeManagerConfig: string, policyManagerConfigData: string, gaslimit: string, provider: any, address: string) => Promise<any>;
 /**
