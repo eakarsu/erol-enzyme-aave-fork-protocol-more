@@ -1,5 +1,5 @@
 {
-  "name": "protocol",
+  "name": "@devngeni/protocol",
   "version": "1.0.0",
   "description": "The Radar dapp, package fork",
   "types": "./build/index.d.ts",
@@ -10,7 +10,7 @@
     "clean": "del ./build/*",
     "build": "npm run clean && tsc ",
     "dev": "ts-node-dev src/example/index.ts",
-    "pub": "npm version patch && npm run build && npm publish"
+    "pub": "npm version patch && npm run build && npm publish --access public"
   },
   "author": "Omambia M. Dauglous",
   "license": "MIT",
