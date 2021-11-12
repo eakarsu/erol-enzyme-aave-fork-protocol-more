@@ -1,0 +1,28 @@
+{
+  "name": "protocol",
+  "version": "1.0.0",
+  "description": "The Radar dapp, package fork",
+  "types": "./build/index.d.ts",
+  "files": [
+    "build/**/*"
+  ],
+  "scripts": {
+    "clean": "del ./build/*",
+    "build": "npm run clean && tsc ",
+    "dev": "ts-node-dev src/example/index.ts",
+    "pub": "npm version patch && npm run build && npm publish"
+  },
+  "author": "Omambia M. Dauglous",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^16.11.7",
+    "del-cli": "^4.0.1",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.4.4"
+  },
+  "dependencies": {
+    "@enzymefinance/ethers": "^1.0.10",
+    "@enzymefinance/protocol": "^3.0.1",
+    "ethers": "^5.5.1"
+  }
+}
