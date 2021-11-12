@@ -8,15 +8,17 @@ import {
   convertRateToScaledPerSecondRate,
   encodeArgs,
 } from "./../utils/fund";
-import ManagementFee from "./../abis/ManagementFee.json";
-import PerformanceFee from "./../abis/PerformanceFee.json";
-import FeeManager from "./../abis/FeeManager.json";
-import EntranceRateDirectFee from "./../abis/EntranceRateDirectFee.json";
-import MinMaxInvestment from "./../abis/MinMaxInvestment.json";
-import AssetBlacklist from "./../abis/AssetBlacklist.json";
-import AssetWhitelist from "./../abis/AssetWhitelist.json";
-import AdapterBlacklist from "./../abis/AdapterBlacklist.json";
-import AdapterWhitelist from "./../abis/AdapterWhitelist.json";
+import {
+  AssetWhitelist,
+  AssetBlacklist,
+  AdapterBlacklist,
+  AdapterWhitelist,
+  PerformanceFee,
+  MinMaxInvestment,
+  FeeManager,
+  ManagementFee,
+  EntranceRateDirectFee,
+} from "./../prep-abis";
 
 export {
   PerformanceFee,
