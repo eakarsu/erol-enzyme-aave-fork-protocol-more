@@ -126,7 +126,7 @@ export const getFeesManagerConfigArgsData = async (
   allow: any
 ) => {
   // remove code
-  console.log(fees, feeManagerSettingsData, _signer, allow);
+  // console.log(fees, feeManagerSettingsData, _signer, allow);
   const FeeManagerInterface = new ethers.utils.Interface(
     JSON.parse(JSON.stringify(FeeManager.abi))
   );
