@@ -52,9 +52,10 @@ const assets  = await getAllAssetsIntegrations("SUB_GRAPH_ENDPOINT_LINK");
 
 The enzyme protocol entry point is creation of a fund, what they call a vault.
 
+
 ```
 import { ethers, utils } from "ethers";
-import { config } from "./../config/dev";
+import { config } from "./../..from_config<please-change-this-to where configs are>";
 import {
  EntranceRateDirectFee,
  createNewFund,
@@ -78,6 +79,8 @@ import {
   const performanceFee = "10"; // %
   const entranceFee = "2"; //%
 
+  // prepare fee configs
+
   let feeManagerSettingsData = [
     getManagementFees(managementFee),
     getEntranceRateFeeConfigArgs(entranceFee),
@@ -96,6 +99,8 @@ import {
     config.ADDRESS,
     true
   );
+
+  // Create new fund with a name
 
   try {
     const fund = await createNewFund(
@@ -116,3 +121,24 @@ import {
   }
 ```
 
+
+### List all funds 
+
+This will help you to get all funds within the system. You will have to do some pagination on the front-end
+
+```
+const funds  =  await listAllFunds("SUB_GRAPH_ENDPOINT_LINK");
+```
+
+### User Vaults/Funds
+
+```
+const userFunds  = await walletAddressUserVaults("SUB_GRAPH_ENDPOINT_LINK");
+```
+
+## List fund Investments
+
+
+```
+const investments  = await getUserAddressInvestments("SUB_GRAPH_ENDPOINT_LINK");
+```

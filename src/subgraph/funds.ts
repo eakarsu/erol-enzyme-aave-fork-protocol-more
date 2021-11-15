@@ -1,4 +1,5 @@
 import axios from "axios";
+import { convertScaledPerSecondRateToRate } from "../utils/fund";
 
 /**
  * It gives a list of all denomination assets
@@ -71,7 +72,7 @@ export const getDenominationAssets = async (SUB_GRAPH_ENDPOINT: string) => {
 
     return data.data.assets;
   } catch (error) {
-    console.log(error);
+    return error;
   }
 };
 
@@ -98,7 +99,9 @@ export const getAllAssetsIntegrations = async (SUB_GRAPH_ENDPOINT: string) => {
         }`,
     });
     return data.data.assets;
-  } catch (error) {}
+  } catch (error) {
+    return error;
+  }
 };
 
 /**
@@ -160,7 +163,9 @@ export const getCurrentUserFunds = async (
     });
 
     return data.data.funds;
-  } catch (error) {}
+  } catch (error) {
+    return error;
+  }
 };
 
 /**
@@ -270,65 +275,69 @@ export const listAllUserTransactions = async (
     }`,
   });
 
-  let investments: any[] = [];
-  let transactions: any[] = [];
-  const funds = data.data.investments.map((fItem: any) => fItem.fund);
+  try {
+    let investments: any[] = [];
+    let transactions: any[] = [];
+    const funds = data.data.investments.map((fItem: any) => fItem.fund);
 
-  funds.forEach((fund: any) => {
-    fund.sharesChanges
-      .map((item: any) => {
-        if (item.fund) {
-          // withdraw
-          const withdraw = {
-            shares: item.shares,
-            timestamp: parseInt(item.timestamp),
-            transaction_id: item.transaction.id,
-            to: item.transaction.to,
-            type: "WITHDRAW",
-            from: item.transaction.from,
-            amount: item.payoutAssetAmounts
-              ? item.payoutAssetAmounts[0].amount
-              : 0,
-            symbol: item.payoutAssetAmounts
-              ? item.payoutAssetAmounts[0].asset.symbol
-              : "",
-            price: item.payoutAssetAmounts
-              ? item.payoutAssetAmounts[0].asset.price.price
-              : "",
-            investor: item.investor.id,
-            fundName: item.fund.name,
-            fundId: item.fund.id,
-          };
+    funds.forEach((fund: any) => {
+      fund.sharesChanges
+        .map((item: any) => {
+          if (item.fund) {
+            // withdraw
+            const withdraw = {
+              shares: item.shares,
+              timestamp: parseInt(item.timestamp),
+              transaction_id: item.transaction.id,
+              to: item.transaction.to,
+              type: "WITHDRAW",
+              from: item.transaction.from,
+              amount: item.payoutAssetAmounts
+                ? item.payoutAssetAmounts[0].amount
+                : 0,
+              symbol: item.payoutAssetAmounts
+                ? item.payoutAssetAmounts[0].asset.symbol
+                : "",
+              price: item.payoutAssetAmounts
+                ? item.payoutAssetAmounts[0].asset.price.price
+                : "",
+              investor: item.investor.id,
+              fundName: item.fund.name,
+              fundId: item.fund.id,
+            };
 
-          transactions.push(withdraw);
+            transactions.push(withdraw);
 
-          return withdraw;
-        } else if (item.asset && item.transaction) {
-          const invest = {
-            shares: item.shares,
-            timestamp: parseInt(item.timestamp),
-            transaction_id: item.transaction.id,
-            to: item.transaction.to,
-            type: "INVEST",
-            investmentShares: item.investmentState.shares,
-            from: item.transaction.from,
-            amount: item.investmentAmount,
-            symbol: item.asset.symbol,
-            price: item.asset.price.price,
-            investor: item.investor.id,
-            fundName: fund.name,
-            fundId: fund.id,
-          };
+            return withdraw;
+          } else if (item.asset && item.transaction) {
+            const invest = {
+              shares: item.shares,
+              timestamp: parseInt(item.timestamp),
+              transaction_id: item.transaction.id,
+              to: item.transaction.to,
+              type: "INVEST",
+              investmentShares: item.investmentState.shares,
+              from: item.transaction.from,
+              amount: item.investmentAmount,
+              symbol: item.asset.symbol,
+              price: item.asset.price.price,
+              investor: item.investor.id,
+              fundName: fund.name,
+              fundId: fund.id,
+            };
 
-          investments.push(invest);
-          transactions.push(invest);
-        }
-        return;
-      })
-      .filter((item: any) => item);
-  });
+            investments.push(invest);
+            transactions.push(invest);
+          }
+          return;
+        })
+        .filter((item: any) => item);
+    });
 
-  return { transactions, investments };
+    return { transactions, investments };
+  } catch (error) {
+    return error;
+  }
 };
 
 /**
@@ -377,5 +386,254 @@ export const listAllFunds = async (SUB_GRAPH_ENDPOINT: string) => {
     });
 
     return data.data.funds;
-  } catch (error) {}
+  } catch (error) {
+    return error;
+  }
+};
+
+/**
+ *  Get a list all user vaults.
+ * @param SUB_GRAPH_ENDPOINT  Subgraph link endpoint
+ * @param user_address User address
+ * @returns List of funds
+ */
+
+export const walletAddressUserVaults = async (
+  SUB_GRAPH_ENDPOINT: string,
+  user_address: string
+) => {
+  const query = `
+    {
+      funds(where: {manager: "${user_address}"}){
+           id 
+           name
+           manager 
+           shares {
+            totalSupply
+          }
+           accessor{
+             id
+             denominationAsset{
+               symbol
+               name 
+               price{
+                 price
+               }
+             }
+           }
+           portfolio {
+            holdings {
+              amount
+              asset {
+                symbol
+                price {
+                  price
+                }
+              }
+            }
+          }
+          investmentCount
+          lastKnowGavInEth
+          trackedAssets {
+            name
+            symbol
+          }
+           state{
+             shares{
+               totalSupply
+             }
+           }
+         }
+     }`;
+
+  try {
+    const { data } = await axios.post(SUB_GRAPH_ENDPOINT, {
+      query,
+    });
+    return data.data.funds;
+  } catch (error) {
+    return error;
+  }
+};
+
+/**
+ * Get of all user investments on all funds, This one give a list of funds with their investments
+ * @param SUB_GRAPH_ENDPOINT Subgraph link
+ * @param address User address
+ * @returns
+ */
+
+export const getUserAddressInvestments = async (
+  SUB_GRAPH_ENDPOINT: string,
+  address: string
+) => {
+  const query = `
+    {
+      accounts(where: {id: "${address}"}) {
+       id
+       investments {
+         id
+         fund {
+           id
+           shares {
+             totalSupply
+           }
+           name
+           portfolio {
+             holdings {
+               amount
+               asset {
+                 symbol
+                 price {
+                   price
+                 }
+               }
+             }
+           }
+         }
+         shares
+       }
+     }
+     }`;
+
+  try {
+    const { data } = await axios.post(SUB_GRAPH_ENDPOINT, {
+      query,
+    });
+
+    return data.data.accounts.length > 0
+      ? data.data.accounts[0].investments
+      : [];
+  } catch (error) {
+    return error;
+  }
+};
+
+export const minMaxDepositAmounts = async (
+  SUB_GRAPH_ENDPOINT: string,
+  fundId: string
+) => {
+  const query = `{
+      minMaxInvestmentFundSettingsSetEvents(first:1, where:{fund: "${fundId}"}) {
+        id
+        fund{
+          id
+          accessor{
+            denominationAsset{
+              id
+              symbol
+              name
+            }
+          }
+        }
+        minInvestmentAmount
+        maxInvestmentAmount
+      }
+    }`;
+
+  try {
+    const { data } = await axios.post(SUB_GRAPH_ENDPOINT, {
+      query,
+    });
+    console.log(data.data);
+
+    return data.data.minMaxInvestmentFundSettingsSetEvents.length
+      ? data.data.minMaxInvestmentFundSettingsSetEvents[0]
+      : { maxInvestmentAmount: "0.00", minInvestmentAmount: "0.00" };
+  } catch (error) {
+    return { maxInvestmentAmount: "0.00", minInvestmentAmount: "0.00" };
+  }
+};
+
+export const performanceFee = async (
+  SUB_GRAPH_ENDPOINT: string,
+  comptrollerId: string
+) => {
+  const query = `
+    {
+      performanceFeeSettings(where:{comptroller: "${comptrollerId}"}){
+       rate
+       period
+       comptroller{
+         id
+         fund{
+           id
+         }
+       }
+     }
+     }`;
+
+  try {
+    const { data } = await axios.post(SUB_GRAPH_ENDPOINT, {
+      query,
+    });
+
+    return data.data.performanceFeeSettings.length > 0
+      ? {
+          rate: data.data.performanceFeeSettings[0].rate,
+          period: data.data.performanceFeeSettings[0].period,
+        }
+      : { rate: "0.00", period: "0.00" };
+  } catch (error) {
+    return { rate: "0.00", period: "0.00" };
+  }
+};
+
+export const entranceDirectBurnFees = async (
+  SUB_GRAPH_ENDPOINT: string,
+  fundId: string
+) => {
+  const query = `
+    {
+      entranceRateBurnFeeSettledEvents(where:{fund: "${fundId}"}){
+        fund{
+          id 
+        }
+        sharesQuantity
+      }
+    }`;
+
+  try {
+    const { data } = await axios.post(SUB_GRAPH_ENDPOINT, {
+      query,
+    });
+
+    return data.data.entranceRateBurnFeeSettledEvents.length > 0
+      ? { rate: data.data.entranceRateBurnFeeSettledEvents[0].sharesQuantity }
+      : { rate: "0.00" };
+  } catch (error) {
+    return { rate: "0.00" };
+  }
+};
+
+export const managementFee = async (
+  SUB_GRAPH_ENDPOINT: string,
+  comptrollerId: string
+) => {
+  const query = `
+    {
+      managementFeeSettings(where:{comptroller: "${comptrollerId}"}){
+        id
+        comptroller{
+          id
+        }    
+        scaledPerSecondRate
+      }
+    }`;
+
+  try {
+    const { data } = await axios.post(SUB_GRAPH_ENDPOINT, {
+      query,
+    });
+
+    return data.data.managementFeeSettings.length > 0
+      ? {
+          scaledPerSecondRate: convertScaledPerSecondRateToRate(
+            data.data.managementFeeSettings[0].scaledPerSecondRate
+          ),
+        }
+      : { scaledPerSecondRate: "0.00" };
+  } catch (error) {
+    return { scaledPerSecondRate: "0.00" };
+  }
 };
