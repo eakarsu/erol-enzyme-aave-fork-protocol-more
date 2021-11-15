@@ -75,7 +75,7 @@ export const getDenominationAssets = async (SUB_GRAPH_ENDPOINT: string) => {
   }
 };
 
-/**
+/**endpointendpoint
  * Get all assets integrations
  * @param SUB_GRAPH_ENDPOINT Subgraph endpoint
  * @returns
@@ -98,5 +98,284 @@ export const getAllAssetsIntegrations = async (SUB_GRAPH_ENDPOINT: string) => {
         }`,
     });
     return data.data.assets;
+  } catch (error) {}
+};
+
+/**
+ * Lists of all user created funds, that is where user is the manager
+ * @param SUB_GRAPH_ENDPOINT Subgraph endpoint
+ * @param accessor_address  User Address,
+ * @returns List of Funds
+ */
+
+export const getCurrentUserFunds = async (
+  SUB_GRAPH_ENDPOINT: string,
+  accessor_address: string
+) => {
+  try {
+    const query = `{
+        funds(first: 5, where: {manager: "${accessor_address}"}){
+             id 
+             name
+             manager 
+             shares {
+              totalSupply
+            }
+             accessor{
+               id
+               denominationAsset{
+                 symbol
+                 name 
+                 price{
+                   price
+                 }
+               }
+             }
+             portfolio {
+              holdings {
+                amount
+                asset {
+                  symbol
+                  price {
+                    price
+                  }
+                }
+              }
+            }
+            investmentCount
+            lastKnowGavInEth
+            trackedAssets {
+              name
+              symbol
+            }
+             state{
+               shares{
+                 totalSupply
+               }
+             }
+           }
+       }`;
+    const { data } = await axios.post(SUB_GRAPH_ENDPOINT, {
+      query,
+    });
+
+    return data.data.funds;
+  } catch (error) {}
+};
+
+/**
+ * List all user transactions
+ * @param SUB_GRAPH_ENDPOINT
+ * @param walletAddress
+ * @returns
+ */
+
+export const listAllUserTransactions = async (
+  SUB_GRAPH_ENDPOINT: string,
+  walletAddress: string
+) => {
+  //0xaed39f9013fe44deb694203d9d12ea4029edac49
+  const { data } = await axios.post(SUB_GRAPH_ENDPOINT, {
+    query: `{
+      investments(where: {investor: "${walletAddress}"}){
+      fund{
+       id 
+       name
+        sharesChanges(orderBy: timestamp, orderDirection: desc) {
+          shares
+          timestamp
+          investmentState{
+            shares
+          }
+          fundState{
+            id 
+            portfolio{
+              id
+              holdings{
+                id
+                asset{
+                  id
+                  symbol
+                  name
+                }
+                amount
+                price{
+                  price
+                }
+              }
+            }  
+          }
+          ... on SharesBoughtEvent{
+            id 
+            investmentAmount
+            asset{
+              id
+              name
+              symbol
+              price{
+                price
+              }
+            }
+            investor{
+              id 
+            }
+            transaction{
+              id
+              from
+              to 
+            }
+          }
+          
+          ...on SharesRedeemedEvent{
+            id 
+            investor{
+              id
+            }
+            fund {
+              id
+              name
+              accessor{
+                id
+                denominationAsset{
+                  id 
+                  name
+                  symbol
+                }
+              }
+            }
+            
+            payoutAssetAmounts{
+              asset{
+                id
+                name
+                symbol
+                price{
+                  price
+                }
+              }
+              amount
+              price{
+                price
+              }
+            }
+            transaction{
+              id 
+              from 
+              to
+            }
+          }
+        }
+      } 
+    }
+    }`,
+  });
+
+  let investments: any[] = [];
+  let transactions: any[] = [];
+  const funds = data.data.investments.map((fItem: any) => fItem.fund);
+
+  funds.forEach((fund: any) => {
+    fund.sharesChanges
+      .map((item: any) => {
+        if (item.fund) {
+          // withdraw
+          const withdraw = {
+            shares: item.shares,
+            timestamp: parseInt(item.timestamp),
+            transaction_id: item.transaction.id,
+            to: item.transaction.to,
+            type: "WITHDRAW",
+            from: item.transaction.from,
+            amount: item.payoutAssetAmounts
+              ? item.payoutAssetAmounts[0].amount
+              : 0,
+            symbol: item.payoutAssetAmounts
+              ? item.payoutAssetAmounts[0].asset.symbol
+              : "",
+            price: item.payoutAssetAmounts
+              ? item.payoutAssetAmounts[0].asset.price.price
+              : "",
+            investor: item.investor.id,
+            fundName: item.fund.name,
+            fundId: item.fund.id,
+          };
+
+          transactions.push(withdraw);
+
+          return withdraw;
+        } else if (item.asset && item.transaction) {
+          const invest = {
+            shares: item.shares,
+            timestamp: parseInt(item.timestamp),
+            transaction_id: item.transaction.id,
+            to: item.transaction.to,
+            type: "INVEST",
+            investmentShares: item.investmentState.shares,
+            from: item.transaction.from,
+            amount: item.investmentAmount,
+            symbol: item.asset.symbol,
+            price: item.asset.price.price,
+            investor: item.investor.id,
+            fundName: fund.name,
+            fundId: fund.id,
+          };
+
+          investments.push(invest);
+          transactions.push(invest);
+        }
+        return;
+      })
+      .filter((item: any) => item);
+  });
+
+  return { transactions, investments };
+};
+
+/**
+ * List all funds within the application
+ * @param SUB_GRAPH_ENDPOINT
+ * @returns
+ */
+
+export const listAllFunds = async (SUB_GRAPH_ENDPOINT: string) => {
+  try {
+    const { data } = await axios.post(SUB_GRAPH_ENDPOINT, {
+      query: `
+              {
+                  funds(orderBy: lastKnowGavInEth, orderDirection: desc) {
+                    id
+                    name
+                    inception
+                    shares {
+                      totalSupply
+                    }
+                    accessor {
+                      denominationAsset {
+                        symbol
+                      }
+                    }
+                    portfolio {
+                      holdings {
+                        amount
+                        asset {
+                          symbol
+                          price {
+                            price
+                          }
+                        }
+                      }
+                    }
+                    investmentCount
+                    lastKnowGavInEth
+                    trackedAssets {
+                      name
+                      symbol
+                    }
+                  }
+                }
+          `,
+    });
+
+    return data.data.funds;
   } catch (error) {}
 };
