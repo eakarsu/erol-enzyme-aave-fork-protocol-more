@@ -1,6 +1,8 @@
 import { utils, ethers, BigNumberish } from "ethers";
 import { AddressLike } from "@enzymefinance/ethers";
 import FundDeployer from "./../abis/FundDeployer.json";
+import { VaultLib } from "./../prep-abis";
+
 import {
   managementFeeConfigArgs,
   performanceFeeConfigArgs,
@@ -173,3 +175,24 @@ export const getFeesManagerConfigArgsData = async (
     settings: feeManagerSettingsData,
   });
 };
+
+/**
+ *
+ * @param assetAddress Asset address
+ * @param signer
+ * @returns
+ */
+
+export async function getAssetDecimals(assetAddress: string, signer: any) {
+  try {
+    // we use VaultLib as an interface because it has the `decimals()` getter
+    const assetInterface = new ethers.utils.Interface(
+      JSON.parse(JSON.stringify(VaultLib.abi))
+    );
+    const asset = new ethers.Contract(assetAddress, assetInterface, signer);
+    const decimals = await asset.decimals();
+    return decimals;
+  } catch (error) {
+    return { error: false };
+  }
+}
