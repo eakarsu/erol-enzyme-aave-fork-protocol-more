@@ -13,3 +13,4 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./prep-abis"), exports);
 __exportStar(require("./utils/fund"), exports);
 __exportStar(require("./funds/create-fund"), exports);
+__exportStar(require("./subgraph/funds"), exports);

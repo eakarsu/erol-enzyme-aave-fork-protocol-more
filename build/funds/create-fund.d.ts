@@ -27,3 +27,10 @@ export declare const getPolicyArgsData: (policies: AddressLike[], policySettings
  * @returns
  */
 export declare const getFeesManagerConfigArgsData: (fees: any, feeManagerSettingsData: any, _signer: any, allow: any) => Promise<string>;
+/**
+ *
+ * @param assetAddress Asset address
+ * @param signer
+ * @returns
+ */
+export declare function getAssetDecimals(assetAddress: string, signer: any): Promise<any>;

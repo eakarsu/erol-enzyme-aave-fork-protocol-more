@@ -219,3 +219,14 @@ export function convertScaledPerSecondRateToRate(
 
   return utils.parseEther(rate.toFixed(17, Decimal.ROUND_UP));
 }
+
+export const getMinMaxDepositPolicyArgs = (
+  minDeposit: BigNumber,
+  maxDeposit: BigNumber
+) => {
+  return encodeArgs(["uint256", "uint256"], [minDeposit, maxDeposit]);
+};
+
+export const getAddressArrayPolicyArgs = (ars: any) => {
+  return encodeArgs(["address[]"], [ars]);
+};
