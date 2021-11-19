@@ -26,6 +26,13 @@ const config = {
 export { config };
 ```
 
+#### Test Subgraph
+
+```
+Queries (HTTP):     https://api.thegraph.com/subgraphs/name/trust0212/radar-graph
+Subscriptions (WS): wss://api.thegraph.com/subgraphs/name/trust0212/radar-graph
+```
+
 
 
 ### Assets

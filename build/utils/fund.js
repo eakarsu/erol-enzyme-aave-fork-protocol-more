@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.convertScaledPerSecondRateToRate = exports.policyManagerConfigArgs = exports.minMaxInvestmentArgs = exports.maxConcentrationArgs = exports.investorWhitelistArgs = exports.guaranteedRedemptionArgs = exports.buySharesPriceFeedToleranceArgs = exports.buySharesCallerWhitelistArgs = exports.assetWhitelistArgs = exports.assetBlacklistArgs = exports.adapterWhitelistArgs = exports.adapterBlacklistArgs = exports.managementFeeSharesDue = exports.rpow = exports.entranceRateFeeSharesDue = exports.entranceRateFeeConfigArgs = exports.performanceFeeConfigArgs = exports.convertRateToScaledPerSecondRate = exports.managementFeeConfigArgs = exports.payoutSharesOutstandingForFeesArgs = exports.feeManagerConfigArgs = exports.encodeFunctionData = exports.encodeArgs = exports.secondsPerYear = exports.managementFeeScaleDecimal = exports.managementFeeScale = exports.managementFeeDigits = exports.sighash = void 0;
+exports.getAddressArrayPolicyArgs = exports.getMinMaxDepositPolicyArgs = exports.convertScaledPerSecondRateToRate = exports.policyManagerConfigArgs = exports.minMaxInvestmentArgs = exports.maxConcentrationArgs = exports.investorWhitelistArgs = exports.guaranteedRedemptionArgs = exports.buySharesPriceFeedToleranceArgs = exports.buySharesCallerWhitelistArgs = exports.assetWhitelistArgs = exports.assetBlacklistArgs = exports.adapterWhitelistArgs = exports.adapterBlacklistArgs = exports.managementFeeSharesDue = exports.rpow = exports.entranceRateFeeSharesDue = exports.entranceRateFeeConfigArgs = exports.performanceFeeConfigArgs = exports.convertRateToScaledPerSecondRate = exports.managementFeeConfigArgs = exports.payoutSharesOutstandingForFeesArgs = exports.feeManagerConfigArgs = exports.encodeFunctionData = exports.encodeArgs = exports.secondsPerYear = exports.managementFeeScaleDecimal = exports.managementFeeScale = exports.managementFeeDigits = exports.sighash = void 0;
 const ethers_1 = require("ethers");
 const ethers_2 = require("@enzymefinance/ethers");
 const decimal_js_1 = require("decimal.js");
@@ -141,3 +141,11 @@ function convertScaledPerSecondRateToRate(scaledPerSecondRate) {
     return ethers_1.utils.parseEther(rate.toFixed(17, decimal_js_1.Decimal.ROUND_UP));
 }
 exports.convertScaledPerSecondRateToRate = convertScaledPerSecondRateToRate;
+const getMinMaxDepositPolicyArgs = (minDeposit, maxDeposit) => {
+    return encodeArgs(["uint256", "uint256"], [minDeposit, maxDeposit]);
+};
+exports.getMinMaxDepositPolicyArgs = getMinMaxDepositPolicyArgs;
+const getAddressArrayPolicyArgs = (ars) => {
+    return encodeArgs(["address[]"], [ars]);
+};
+exports.getAddressArrayPolicyArgs = getAddressArrayPolicyArgs;

@@ -54,3 +54,5 @@ export declare function policyManagerConfigArgs({ policies, settings, }: {
     settings: BytesLike[];
 }): string;
 export declare function convertScaledPerSecondRateToRate(scaledPerSecondRate: BigNumberish): BigNumber;
+export declare const getMinMaxDepositPolicyArgs: (minDeposit: BigNumber, maxDeposit: BigNumber) => string;
+export declare const getAddressArrayPolicyArgs: (ars: any) => string;
