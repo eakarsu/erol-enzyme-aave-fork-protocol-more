@@ -1,3 +1,6 @@
 node_modules
 build
 build/
+DOC.md
+.env
+src/config/index.ts

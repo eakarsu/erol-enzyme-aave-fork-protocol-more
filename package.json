@@ -1,6 +1,6 @@
 {
   "name": "@devngeni/protocol",
-  "version": "1.0.9",
+  "version": "1.0.11",
   "description": "The Radar dapp, package fork",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
@@ -11,6 +11,8 @@
     "clean": "del ./build/*",
     "build": "npm run clean && tsc ",
     "dev": "ts-node-dev src/example/index.ts",
+    "getEth": "ts-node-dev src/getSomeEth.ts",
+    "testAave": "ts-node-dev src/example/aave.ts",
     "pub": "npm version patch && npm run build && npm publish --access public"
   },
   "author": "Omambia M. Dauglous",
@@ -22,9 +24,11 @@
     "typescript": "^4.4.4"
   },
   "dependencies": {
+    "@aave/protocol-js": "^4.3.0",
     "@enzymefinance/ethers": "^1.0.10",
     "@enzymefinance/protocol": "^3.0.1",
     "axios": "^0.24.0",
-    "ethers": "^5.5.1"
+    "ethers": "^5.5.1",
+    "web3": "^1.6.1"
   }
 }
