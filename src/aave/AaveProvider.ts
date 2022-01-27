@@ -1,8 +1,8 @@
 import { ethers } from "ethers";
 
-const LendingPoolAddressProviderABI = require("./ABIs/AddressProvider.json");
-const LendingPoolABI = require("./ABIs/LendingPool.json");
-const ERC20ABI = require("./ABIs/ERC20.json");
+const LendingPoolAddressProviderABI = require("./../abis/aave/AddressProvider.json");
+const LendingPoolABI = require("./../abis/aave/LendingPool.json");
+const ERC20ABI = require("./../abis/aave/ERC20.json");
 
 export { LendingPoolAddressProviderABI, LendingPoolABI, ERC20ABI };
 
