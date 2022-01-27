@@ -108,7 +108,7 @@ class AaveProvider {
    * Allow connect wallet to deposit colleteral to aave protocol
    * @param amount
    * @param assetAddress
-   * @returns
+   * @returns Deposit Tranasaction information
    */
   async depositCollateral(
     amount: string,
@@ -157,13 +157,21 @@ class AaveProvider {
       return {
         message: "Successfully deposited amount for collateral",
         error: "",
-        tx: tx,
+        deposit: tx,
       };
     } catch (error) {
       return { message: "Error occurred", error, tx: "" };
     }
   }
 
+  /**
+   * 
+   * @param amount Amount 
+   * @param assetAddress 
+   * @param interestRateMode 
+   * @param signer 
+   * @returns 
+   */
   async borrowAsset(
     amount: string,
     assetAddress: string,
@@ -214,7 +222,7 @@ class AaveProvider {
       );
       console.log(borrow)
       console.log(`After Balance: ${await assetContact.balanceOf(signer.address)}`);
-      return { message: "Successfully borrowed asset", error: null };
+      return { message: "Successfully borrowed asset", error: null, borrow };
     } catch (error: any) {
       return { message: "Error occurred", error };
     }

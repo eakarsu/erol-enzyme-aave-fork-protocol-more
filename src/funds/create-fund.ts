@@ -1,7 +1,18 @@
 import { utils, ethers, BigNumberish } from "ethers";
 import { AddressLike } from "@enzymefinance/ethers";
-import FundDeployer from "./../abis/FundDeployer.json";
-import { VaultLib } from "./../prep-abis";
+import {
+  PerformanceFee,
+  MinMaxInvestment,
+  FeeManager,
+  ManagementFee,
+  EntranceRateDirectFee,
+  VaultLib,
+  FundDeployer,
+  AdapterBlacklist,
+  AdapterWhitelist,
+  AssetBlacklist,
+  AssetWhitelist,
+} from "./../prep-abis";
 
 import {
   managementFeeConfigArgs,
@@ -9,18 +20,9 @@ import {
   feeManagerConfigArgs,
   convertRateToScaledPerSecondRate,
   encodeArgs,
+  getMinMaxDepositPolicyArgs,
+  getAddressArrayPolicyArgs,
 } from "./../utils/fund";
-import {
-  AssetWhitelist,
-  AssetBlacklist,
-  AdapterBlacklist,
-  AdapterWhitelist,
-  PerformanceFee,
-  MinMaxInvestment,
-  FeeManager,
-  ManagementFee,
-  EntranceRateDirectFee,
-} from "./../prep-abis";
 
 export {
   PerformanceFee,
@@ -33,20 +35,182 @@ export {
   AdapterWhitelist,
 };
 
+export const processPolicyConfigurationData = async (options: {
+  provider: any;
+  denominationAsset: string;
+  deposit: {
+    minimum: string;
+    maximum: string;
+  };
+  asset: {
+    whiteList: Array<string>;
+    blackList: Array<string>;
+  };
+  adpater: {
+    whiteList: Array<string>;
+    blackList: Array<string>;
+  };
+}) => {
+  let policyManagerSettingsData = [];
+  let policies = [];
+  // Min / Max Investment Policy
+  if (options.deposit.minimum || options.deposit.maximum) {
+    try {
+      // Get values from frontend. Should be 0 if they are not enabled.
+      var minDeposit: any = options.deposit.minimum
+        ? options.deposit.minimum
+        : 0;
+      var maxDeposit: any = options.deposit.maximum
+        ? options.deposit.maximum
+        : 0;
+
+      // Scale the minDeposit/maxDeposit values to the denomination asset's decimals
+      var denominationAssetDecimals = await getAssetDecimals(
+        options.denominationAsset,
+        options.provider
+      );
+      minDeposit =
+        minDeposit === 0
+          ? 0
+          : utils
+              .parseEther(minDeposit)
+              .div(10 ** (18 - denominationAssetDecimals));
+      maxDeposit =
+        maxDeposit === 0
+          ? 0
+          : utils
+              .parseEther(maxDeposit)
+              .div(10 ** (18 - denominationAssetDecimals));
+
+      // Push settings and actual policy
+      policies.push(MinMaxInvestment.address);
+      policyManagerSettingsData.push(
+        getMinMaxDepositPolicyArgs(minDeposit, maxDeposit)
+      );
+    } catch (e) {}
+  }
+
+  if (options.asset.blackList.length != 0) {
+    policies.push(AssetBlacklist.address);
+    policyManagerSettingsData.push(
+      getAddressArrayPolicyArgs(options.asset.blackList)
+    );
+  }
+
+  if (options.asset.whiteList.length != 0) {
+    policies.push(AssetWhitelist.address);
+    policyManagerSettingsData.push(
+      getAddressArrayPolicyArgs(options.asset.whiteList)
+    );
+  }
+
+  if (options.adpater.blackList.length != 0) {
+    policies.push(AdapterBlacklist.address);
+    policyManagerSettingsData.push(
+      getAddressArrayPolicyArgs(options.adpater.blackList)
+    );
+  }
+
+  if (options.adpater.whiteList.length != 0) {
+    policies.push(AdapterWhitelist.address);
+    policyManagerSettingsData.push(
+      getAddressArrayPolicyArgs(options.adpater.whiteList)
+    );
+  }
+
+  let policyArgsData;
+  if (policies.length === 0) {
+    policyArgsData = utils.hexlify("0x");
+  } else {
+    policyArgsData = getPolicyArgsData(policies, policyManagerSettingsData);
+  }
+
+  return policyArgsData;
+};
+
+/**
+ *
+ * @param signer Authenticated Ethers wallet
+ * @param fundName  The name you are willing to assign to your fund
+ * @param denominationAsset  The base Denomination asset  for your fund
+ * @param timeLockInSeconds Time duration you are willing to lock your funds
+ * @param policyManagerConfigData
+ * @param gaslimit Limit of gas you are willing to spend
+ * @param provider  Ethers provider http provider authenticated
+ * @param feeConfig This gives the fees information all the object items must be as a percentage
+ * @returns
+ */
 export const createNewFund = async (
   signer: ethers.Wallet,
   fundName: string,
   denominationAsset: string,
   timeLockInSeconds: number,
-  feeManagerConfig: string,
-  policyManagerConfigData: string,
   gaslimit: string,
   provider: any,
-  address: string
+  feeConfig?: {
+    managementFee: string;
+    performanceFee: string;
+    entranceFee: string;
+  },
+  policyConfig?: {
+    deposit: {
+      minimum: string;
+      maximum: string;
+    };
+    asset: {
+      whiteList: Array<string>;
+      blackList: Array<string>;
+    };
+    adpater: {
+      whiteList: Array<string>;
+      blackList: Array<string>;
+    };
+  }
 ) => {
-  const nonce = await provider.getTransactionCount(address, "pending");
+  const nonce = await provider.getTransactionCount(signer.address, "pending");
 
-  // remove code
+  /**
+   * PREPARE CONFIGURATIONS
+   */
+  //1. FEE CONFIGURATIONS
+
+  let feeArgsData = utils.hexlify("0x");
+  let policyConfigData  = utils.hexlify("0x");
+  if (feeConfig) {
+    let feeManagerSettingsData = [
+      getManagementFees(feeConfig.managementFee),
+      getEntranceRateFeeConfigArgs(feeConfig.entranceFee),
+      getPerformanceFees(feeConfig.performanceFee, 12),
+    ]; // value configurations
+    let fees = [
+      ManagementFee.address,
+      EntranceRateDirectFee.address,
+      PerformanceFee.address,
+    ]; // list of address
+
+    // FINAL PREP of FEES
+    feeArgsData = await getFeesManagerConfigArgsData(
+      fees,
+      feeManagerSettingsData,
+      signer.address,
+      true
+    );
+  }
+
+  
+  //2. POLICY CONFIG
+
+  if(policyConfig) {
+    const options = {
+      provider,
+      denominationAsset,
+      deposit: policyConfig?.deposit!,
+      asset: policyConfig?.asset!,
+      adpater: policyConfig?.adpater!,
+    };
+    policyConfigData = await processPolicyConfigurationData(options);
+  
+  }
 
   // GET FundDeployer Interface Data
   const FundDeployerInterface = new ethers.utils.Interface(
@@ -60,12 +224,12 @@ export const createNewFund = async (
   );
   //0xd0a1e359811322d97991e03f863a0c30c2cf029c
   const fund = await fundDeployer.createNewFund(
-    address,
+    signer.address,
     fundName,
     denominationAsset,
     timeLockInSeconds,
-    feeManagerConfig,
-    policyManagerConfigData,
+    feeArgsData,
+    policyConfigData,
     { nonce: nonce, gasLimit: gaslimit }
   );
 
