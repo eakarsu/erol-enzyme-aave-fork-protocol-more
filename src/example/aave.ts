@@ -52,7 +52,7 @@ const borrow  = async () => {
   if (aaveProviderWrapper.done) {
     try {
       const borrow = await aaveProvider.borrowAsset(
-        parseInt(ethers.utils.parseEther("100").toString()).toString(),
+        parseInt(ethers.utils.parseEther("150").toString()).toString(),
         BORROW_ASSET,
         1,
         signer

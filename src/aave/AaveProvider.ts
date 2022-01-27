@@ -1,10 +1,5 @@
 import { ethers } from "ethers";
-
-const LendingPoolAddressProviderABI = require("./../abis/aave/AddressProvider.json");
-const LendingPoolABI = require("./../abis/aave/LendingPool.json");
-const ERC20ABI = require("./../abis/aave/ERC20.json");
-
-export { LendingPoolAddressProviderABI, LendingPoolABI, ERC20ABI };
+import {ERC20ABI, AaveLendingPoolABI, AaveAddressProviderABI}  from './../prep-abis'
 
 class AaveProvider {
   private _provider!: ethers.providers.JsonRpcProvider;
@@ -51,7 +46,7 @@ class AaveProvider {
         this._lendingProviderAddress = lpAddressProviderAddress;
         this._lpAddressProviderContract = new ethers.Contract(
           lpAddressProviderAddress,
-          LendingPoolAddressProviderABI,
+          AaveAddressProviderABI,
           signer
         );
         this._signer = signer;
@@ -141,7 +136,7 @@ class AaveProvider {
       // Get lending Pool Contract instance
       const lendingPoolContract = new ethers.Contract(
         lendingPoolAddress,
-        LendingPoolABI,
+        AaveLendingPoolABI,
         signer
       );
 
@@ -179,13 +174,10 @@ class AaveProvider {
       const referralCode = "0";
 
       const assetContact = new ethers.Contract(assetAddress, ERC20ABI, signer);
-      console.log(`Initial Balance: ${assetContact.balanceOf(signer.address)}`);
+      console.log(`Initial Balance: ${await assetContact.balanceOf(signer.address)}`);
 
 
       const lendingPoolAddress = await this.getLendingPoolAddress();
-
-      console.log("lendingPoolAddress", lendingPoolAddress)
-
       
       let nonce = await this.provider.getTransactionCount(
         await signer.getAddress(),
@@ -204,7 +196,7 @@ class AaveProvider {
       // Get lending Pool Contract instance
       const lendingPoolContract = new ethers.Contract(
         lendingPoolAddress,
-        LendingPoolABI,
+        AaveLendingPoolABI,
         signer
       );
 
@@ -221,7 +213,7 @@ class AaveProvider {
         }
       );
       console.log(borrow)
-      console.log(`After Balance: ${assetContact.balanceOf(signer.address)}`);
+      console.log(`After Balance: ${await assetContact.balanceOf(signer.address)}`);
       return { message: "Successfully borrowed asset", error: null };
     } catch (error: any) {
       return { message: "Error occurred", error };

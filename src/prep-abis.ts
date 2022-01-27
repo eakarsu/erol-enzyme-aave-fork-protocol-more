@@ -38,8 +38,16 @@ import VaultLib from "./abis/VaultLib.json";
 import YearnVaultV2Adapter from "./abis/YearnVaultV2Adapter.json";
 import YearnVaultV2PriceFeed from "./abis/YearnVaultV2PriceFeed.json";
 import ZeroExV2Adapter from "./abis/ZeroExV2Adapter.json";
+import AaveAddressProviderABI from  "./abis/aave/AddressProvider.json";
+import ATokenABI from  "./abis/aave/AToken.json";
+import ERC20ABI from  "./abis/aave/ERC20.json";
+import AaveLendingPoolABI from './abis/aave/LendingPool.json'
 
 export {
+  AaveAddressProviderABI,
+  ATokenABI,
+  ERC20ABI,
+  AaveLendingPoolABI,
   AdapterBlacklist,
   ValueInterpreter,
   ZeroExV2Adapter,
