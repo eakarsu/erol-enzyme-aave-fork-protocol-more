@@ -71,4 +71,4 @@ const borrow  = async () => {
 // deposit collateral 
 // deposit()
 // borrow asset
-// borrow()
+borrow()
