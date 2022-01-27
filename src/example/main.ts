@@ -95,3 +95,8 @@ export const aaveBorrowAsset = async () => {
     BORROW_ASSET
   );
 };
+
+
+// 3. DEPOSIT ASSET(options. If you borrowed)
+
+// 4. REDEEM FROM A FUND

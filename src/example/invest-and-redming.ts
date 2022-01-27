@@ -1,5 +1,5 @@
 import { BigNumber, ethers, utils } from "ethers";
-import { fullNumber } from "..";
+import { fullNumber } from "../utils/fund";
 import {
   approveForInvestment,
   investFundDenomination,
