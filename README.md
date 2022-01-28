@@ -260,14 +260,14 @@ export const aaveBorrowAsset = async () => {
 
 This will help you to get all funds within the system. You will have to do some pagination on the front-end
 
-```
+```typescript
 import {listAllFunds} from "@devngeni/protocol"
 const funds  =  await listAllFunds("SUB_GRAPH_ENDPOINT_LINK");
 ```
 
 #### User Vaults/Funds
 
-```
+```typescript
 import {
   walletAddressUserVaults} from "@devngeni/protocol"
 const userFunds  = await walletAddressUserVaults("SUB_GRAPH_ENDPOINT_LINK");
@@ -275,7 +275,7 @@ const userFunds  = await walletAddressUserVaults("SUB_GRAPH_ENDPOINT_LINK");
 
 #### List User Investments
 
-```
+```typescript
 import {getUserAddressInvestments} from "@devngeni/protocol"
 
 const investments  = await getUserAddressInvestments("SUB_GRAPH_ENDPOINT_LINK");
