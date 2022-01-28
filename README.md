@@ -100,7 +100,7 @@ const DEPOSIT_ASSET = ""; // kovan WETH address
 
 This will give a list all the assets found in the enzyme fork. This includes blocked and whitelisted assets. Further you can be able to filter from your user interface.
 
-```
+```typescript
 const denominationAssets  =  await getDenominationAssets("SUB_GRAPH_ENDPOINT_LINK");
 ```
 
@@ -108,7 +108,7 @@ const denominationAssets  =  await getDenominationAssets("SUB_GRAPH_ENDPOINT_LIN
 
 This list can help you handle different policies. Please you this list incase you want to blacklist or whitelist asset.
 
-```
+```typescript
 const assets  = await getAllAssetsIntegrations("SUB_GRAPH_ENDPOINT_LINK");
 ```
 
