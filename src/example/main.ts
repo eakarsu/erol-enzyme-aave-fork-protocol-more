@@ -85,7 +85,7 @@ export const aaveDepositCollateral = async () => {
   );
 };
 
-// (i). Borrow Assets to Use
+// (ii). Borrow Assets to Use
 export const aaveBorrowAsset = async () => {
   return await deposit(
     LP_ADDRESS_PROVIDER_ADDRESS,
