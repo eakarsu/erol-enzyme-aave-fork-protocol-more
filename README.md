@@ -17,9 +17,9 @@
   - [Documentations](#documentations)
   - [### Configuration](#-configuration)
       - [Test Subgraph](#test-subgraph-1)
-      - [Assets](#assets)
-  - [##### Get Denomination assests](#-get-denomination-assests-1)
-  - [##### All Assets](#-all-assets-1)
+    - [Assets](#assets)
+  - [#### Get Denomination assests](#-get-denomination-assests-1)
+  - [#### All Assets](#-all-assets-1)
     - [Create a new Fund](#create-a-new-fund)
     - [List all funds](#list-all-funds)
     - [User Vaults/Funds](#user-vaultsfunds)
@@ -208,9 +208,9 @@ Subscriptions (WS): wss://api.thegraph.com/subgraphs/name/trust0212/radar-graph
 
 
 
-#### Assets
+### Assets
 
-##### Get Denomination assests
+#### Get Denomination assests
 ---
 
 This will give a list all the assets found in the enzyme fork. This includes blocked and whitelisted assets. Further you can be able to filter from your user interface.
@@ -219,7 +219,7 @@ This will give a list all the assets found in the enzyme fork. This includes blo
 const denominationAssets  =  await getDenominationAssets("SUB_GRAPH_ENDPOINT_LINK");
 ```
 
-##### All Assets 
+#### All Assets 
 ---
 
 This list can help you handle different policies. Please you this list incase you want to blacklist or whitelist asset.
