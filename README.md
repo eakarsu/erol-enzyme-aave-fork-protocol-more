@@ -9,9 +9,9 @@
     - [Usage Example](#usage-example)
       - [Test Subgraph](#test-subgraph)
       - [CONSTANTS](#constants)
-      - [Platform Assets](#platform-assets)
-  - [##### Get Denomination assests](#-get-denomination-assests)
-  - [##### All Assets](#-all-assets)
+    - [Platform Assets](#platform-assets)
+  - [#### Get Denomination assests](#-get-denomination-assests)
+  - [#### All Assets](#-all-assets)
       - [Create Fund/Vault](#create-fundvault)
   - [How to setup](#how-to-setup)
   - [Documentations](#documentations)
@@ -95,9 +95,9 @@ const DEPOSIT_ASSET = ""; // kovan WETH address
 
 
 
-#### Platform Assets
+### Platform Assets
 
-##### Get Denomination assests
+#### Get Denomination assests
 ---
 
 This will give a list all the assets found in the enzyme fork. This includes blocked and whitelisted assets. Further you can be able to filter from your user interface.
@@ -106,7 +106,7 @@ This will give a list all the assets found in the enzyme fork. This includes blo
 const denominationAssets  =  await getDenominationAssets("SUB_GRAPH_ENDPOINT_LINK");
 ```
 
-##### All Assets 
+#### All Assets 
 ---
 
 This list can help you handle different policies. Please you this list incase you want to blacklist or whitelist asset.
@@ -170,7 +170,6 @@ import {createNewFund}  from "@devngeni/protocol"
   }
 
 ```
-
 
 
 ## How to setup
