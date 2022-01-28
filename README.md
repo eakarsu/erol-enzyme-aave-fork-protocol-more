@@ -9,8 +9,8 @@
     - [Usage Example](#usage-example)
       - [Test Subgraph](#test-subgraph)
       - [CONSTANTS](#constants)
-  - [#### Platform Assets](#-platform-assets)
-  - [#### All Assets](#-all-assets)
+      - [Platform Assets](#platform-assets)
+      - [All Assets](#all-assets)
       - [Create Fund/Vault](#create-fundvault)
   - [How to setup](#how-to-setup)
   - [Documentations](#documentations)
@@ -18,7 +18,7 @@
       - [Test Subgraph](#test-subgraph-1)
     - [Assets](#assets)
   - [#### Get Denomination assests](#-get-denomination-assests)
-  - [#### All Assets](#-all-assets-1)
+  - [#### All Assets](#-all-assets)
     - [Create a new Fund](#create-a-new-fund)
     - [List all funds](#list-all-funds)
     - [User Vaults/Funds](#user-vaultsfunds)
@@ -93,9 +93,7 @@ const DEPOSIT_ASSET = ""; // kovan WETH address
 ```
 
 
-
 #### Platform Assets
----
 
 This will give a list all the assets found in the enzyme fork. This includes blocked and whitelisted assets. Further you can be able to filter from your user interface.
 
@@ -104,7 +102,6 @@ const denominationAssets  =  await getDenominationAssets("SUB_GRAPH_ENDPOINT_LIN
 ```
 
 #### All Assets 
----
 
 This list can help you handle different policies. Please you this list incase you want to blacklist or whitelist asset.
 
