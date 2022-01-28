@@ -18,7 +18,12 @@
       - [Funds](#funds)
       - [List Platform Funds](#list-platform-funds)
       - [User Vaults/Funds](#user-vaultsfunds)
-    - [List User Investments](#list-user-investments)
+      - [List User Investments](#list-user-investments)
+    - [Contract Redeployment](#contract-redeployment)
+      - [Reployment Process](#reployment-process)
+    - [Contributing](#contributing)
+    - [Acknowledgments](#acknowledgments)
+    - [License](#license)
 
 
 ### Introduction
@@ -43,13 +48,13 @@ It also allows users to deposit collateral to aave and borrow any asset using de
 ### Installation
 
 Using npm
-```
-npm install @devngeni/protocol
+```bash
+$ npm install @devngeni/protocol
 ```
 
 using yarn 
-```
-yarn add @devngeni/protocol
+```bash
+$ yarn add @devngeni/protocol
 ```
 
 ### Usage Example
@@ -67,7 +72,7 @@ Subscriptions (WS): wss://api.thegraph.com/subgraphs/name/trust0212/radar-graph.
 
 #### CONSTANTS
 
-```
+```javascript
 import { ethers } from "ethers";
 
 // provider & Signer
@@ -111,7 +116,7 @@ const assets  = await getAllAssetsIntegrations("SUB_GRAPH_ENDPOINT_LINK");
 
 To create you need to prepare a few fields, this can be picked from your front-end or nodejs application.
 
-```
+```javascript
 import {createNewFund}  from "@devngeni/protocol"
 
  const DENOMINATION_ASSET = "0xd0a1e359811322d97991e03f863a0c30c2cf029c"; // Kovan Wrapped Ether(WETH)
@@ -175,7 +180,7 @@ To Deposit collateral assets we use the `deposit(lendingPoolAddressesProvider, p
 - `amount` - amount of collateral to deposit
 - `asset_to_deposit`  - address of the asset to deposit.
 
-```
+```javascript
 // Example
 import {aaveProvider}  from "@devngeni/protocol"
 
@@ -191,7 +196,6 @@ export const aaveBorrowAsset = async () => {
 ```
 
 
-
 ##### Borrow Assets
 
 To borrow assets we use the `borrow(lendingPoolAddressesProvider, provider, signer, amount, asset_to_borrow)` method of `aaveProvider` named import. 
@@ -201,7 +205,7 @@ To borrow assets we use the `borrow(lendingPoolAddressesProvider, provider, sign
 - `signer` - wallet signer for instance ```ethers.Wallet```
 - `amount` - amount of collateral to borrow
 - `asset_to_borrow`  - address of the asset to borrow.
-```
+```javascript
 // Example
 
 export const aaveBorrowAsset = async () => {
@@ -225,18 +229,56 @@ export const aaveBorrowAsset = async () => {
 This will help you to get all funds within the system. You will have to do some pagination on the front-end
 
 ```
+import {listAllFunds} from "@devngeni/protocol"
 const funds  =  await listAllFunds("SUB_GRAPH_ENDPOINT_LINK");
 ```
 
 #### User Vaults/Funds
 
 ```
+import {
+  walletAddressUserVaults} from "@devngeni/protocol"
 const userFunds  = await walletAddressUserVaults("SUB_GRAPH_ENDPOINT_LINK");
 ```
 
-### List User Investments
+#### List User Investments
 
 ```
+import {getUserAddressInvestments} from "@devngeni/protocol"
+
 const investments  = await getUserAddressInvestments("SUB_GRAPH_ENDPOINT_LINK");
 ```
 
+### Contract Redeployment
+
+Given the Application Bytecode Interface (ABI)  provided in this library if for test deployed in [kovan testnest](https://kovan-testnet.github.io/website/). Your can be able to deploy a set of new contracts.
+
+You can find here the repo to all of the smart contracts.
+
+> NB: The developer will be required to have an understanding of [solidity](https://docs.soliditylang.org/en/v0.8.11/),  [hardhat](https://hardhat.org/),  hardhat deployment, and  debugging skills
+
+#### Reployment Process
+
+> Please follow documentation in the smart contract repo.
+
+
+### Contributing
+
+Contributions, issues, and feature requests are welcome!
+
+Feel free to check the [issues page](https://github.com/devNgeni/erol-enzyme-aave-fork-protocol/issues).
+
+
+### Acknowledgments
+
+-  [nGeni](https://ngeni.io)
+-  Founder & CEO of nGeni (Jo3l)
+-  Project Team
+  
+### License
+
+> Permission is hereby granted, free of charge, to any person obtaining a copy of this `Enzyme And Aave Fork` and associated documentation files, to deal in the `Enzyme And Aave Fork` without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the `Enzyme And Aave Fork`, and to permit persons to whom the `Enzyme And Aave Fork` is furnished to do so, subject to the following conditions:
+
+> The above copyright notice and this permission notice shall be included in all copies or substantial portions of the `Enzyme And Aave Fork`.
+
+> THE `Enzyme And Aave Fork` IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE `Enzyme And Aave Fork` OR THE USE OR OTHER DEALINGS IN THE `Enzyme And Aave Fork`.
