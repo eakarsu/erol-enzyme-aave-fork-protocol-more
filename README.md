@@ -13,6 +13,8 @@
       - [All Assets](#all-assets)
       - [Create Fund/Vault](#create-fundvault)
         - [Fund Investments & Redeemption of Shares](#fund-investments--redeemption-of-shares)
+      - [Aave Integrations](#aave-integrations)
+        - [Deposit Collateral](#deposit-collateral)
         - [Borrow Assets](#borrow-assets)
       - [Funds](#funds)
       - [List Platform Funds](#list-platform-funds)
@@ -189,8 +191,8 @@ export const investingAndRedeemingOrWithdrawalOfShares = async (
   // Redeem shares
   const redeem = await redeemAllShares(fundAddress, PROVIDER);
   console.log("Redeeming: ", redeem);
-};```
-
+};
+```
 
 #### Aave Integrations
 
@@ -231,6 +233,8 @@ To borrow assets we use the `borrow(lendingPoolAddressesProvider, provider, sign
 - `signer` - wallet signer for instance ```ethers.Wallet```
 - `amount` - amount of collateral to borrow
 - `asset_to_borrow`  - address of the asset to borrow.
+
+
 ```javascript
 // Example
 import {aaveProvider,deposit}  from "@devngeni/protocol"
