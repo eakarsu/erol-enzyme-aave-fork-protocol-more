@@ -12,13 +12,13 @@
       - [Platform Assets](#platform-assets)
       - [All Assets](#all-assets)
       - [Create Fund/Vault](#create-fundvault)
-      - [Aave Integrations](#aave-integrations)
-        - [Deposit Collateral](#deposit-collateral)
+        - [Fund Investments & Redeemption of Shares](#fund-investments--redeemption-of-shares)
         - [Borrow Assets](#borrow-assets)
       - [Funds](#funds)
       - [List Platform Funds](#list-platform-funds)
       - [User Vaults/Funds](#user-vaultsfunds)
       - [List User Investments](#list-user-investments)
+      - [Fund Fees](#fund-fees)
     - [Contract Redeployment](#contract-redeployment)
       - [Reployment Process](#reployment-process)
     - [Contributing](#contributing)
@@ -166,6 +166,32 @@ import {createNewFund}  from "@devngeni/protocol"
   }
 
 ```
+##### Fund Investments & Redeemption of Shares
+```typescript
+/**
+ * Fund Investments & Withdrawal
+ */
+
+/**
+ * Allow users to withdrawal/redeem all shares
+ * @param fundAddress Created Fund Address
+ * @param provider  ethers.provider.JsonRpcProvider
+ */
+export const investingAndRedeemingOrWithdrawalOfShares = async (
+  fundAddress: string
+) => {
+  // Approve before investing
+  const approve = await approveBeforeInvesting(fundAddress, PROVIDER, 1000);
+  console.log("Approving: ", approve);
+  // Invest to a fund
+  const investing = await invest(fundAddress, PROVIDER, SIGNER, 1000);
+  console.log("Investing: ", investing);
+  // Redeem shares
+  const redeem = await redeemAllShares(fundAddress, PROVIDER);
+  console.log("Redeeming: ", redeem);
+};```
+
+
 #### Aave Integrations
 
 This enables user to be able to deposit collateral asset, and borrow any asset using the collateral.
@@ -182,14 +208,14 @@ To Deposit collateral assets we use the `deposit(lendingPoolAddressesProvider, p
 
 ```javascript
 // Example
-import {aaveProvider}  from "@devngeni/protocol"
+import {aaveProvider,borrow}  from "@devngeni/protocol"
 
 export const aaveBorrowAsset = async () => {
   return await deposit(
     LP_ADDRESS_PROVIDER_ADDRESS,
     PROVIDER,
     SIGNER,
-    100,
+    1,
     BORROW_ASSET
   );
 };
@@ -207,6 +233,8 @@ To borrow assets we use the `borrow(lendingPoolAddressesProvider, provider, sign
 - `asset_to_borrow`  - address of the asset to borrow.
 ```javascript
 // Example
+import {aaveProvider,deposit}  from "@devngeni/protocol"
+
 
 export const aaveBorrowAsset = async () => {
   return await deposit(
@@ -248,6 +276,46 @@ import {getUserAddressInvestments} from "@devngeni/protocol"
 
 const investments  = await getUserAddressInvestments("SUB_GRAPH_ENDPOINT_LINK");
 ```
+
+
+#### Fund Fees
+
+Use this fees methods to give you the actual values to deplay to your users about each fees.
+
+```typescript
+import { performanceFee, managementFee, entranceDirectBurnFees}  from "@devngeni/protocol"
+/**
+ * Fund  management Fees provided during fund creation
+ * @param comptrollerId Fund ComptrollerId - address assigned to fund comptroller
+ * @returns
+ */
+export const fundManagementFee = async (comptrollerId: string) => {
+  return await managementFee(configs.SUB_GRAPH_ENDPOINT, comptrollerId);
+};
+
+
+/**
+ * Fund Performance Fees provided during creatiion
+ * @param comptrollerId Fund ComptrollerId - address assigned to fund comptroller
+ * @returns
+ */
+ export const fundPerformanceFee = async (comptrollerId: string) => {
+  return await performanceFee(configs.SUB_GRAPH_ENDPOINT, comptrollerId);
+};
+
+
+/**
+ * Fund Entrance Direct Fees  provided during the creation of the  fund
+ * @param comptrollerId Fund ComptrollerId - address assigned to fund comptroller
+ * @returns
+ */
+ export const fundEntranceDirectBurnFees = async (fundAddress: string) => {
+  return await entranceDirectBurnFees(configs.SUB_GRAPH_ENDPOINT, fundAddress);
+};
+
+```
+
+
 
 ### Contract Redeployment
 

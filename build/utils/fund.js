@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAddressArrayPolicyArgs = exports.getMinMaxDepositPolicyArgs = exports.convertScaledPerSecondRateToRate = exports.policyManagerConfigArgs = exports.minMaxInvestmentArgs = exports.maxConcentrationArgs = exports.investorWhitelistArgs = exports.guaranteedRedemptionArgs = exports.buySharesPriceFeedToleranceArgs = exports.buySharesCallerWhitelistArgs = exports.assetWhitelistArgs = exports.assetBlacklistArgs = exports.adapterWhitelistArgs = exports.adapterBlacklistArgs = exports.managementFeeSharesDue = exports.rpow = exports.entranceRateFeeSharesDue = exports.entranceRateFeeConfigArgs = exports.performanceFeeConfigArgs = exports.convertRateToScaledPerSecondRate = exports.managementFeeConfigArgs = exports.payoutSharesOutstandingForFeesArgs = exports.feeManagerConfigArgs = exports.encodeFunctionData = exports.encodeArgs = exports.secondsPerYear = exports.managementFeeScaleDecimal = exports.managementFeeScale = exports.managementFeeDigits = exports.sighash = void 0;
+exports.fullNumber = exports.getAddressArrayPolicyArgs = exports.getMinMaxDepositPolicyArgs = exports.convertScaledPerSecondRateToRate = exports.policyManagerConfigArgs = exports.minMaxInvestmentArgs = exports.maxConcentrationArgs = exports.investorWhitelistArgs = exports.guaranteedRedemptionArgs = exports.buySharesPriceFeedToleranceArgs = exports.buySharesCallerWhitelistArgs = exports.assetWhitelistArgs = exports.assetBlacklistArgs = exports.adapterWhitelistArgs = exports.adapterBlacklistArgs = exports.managementFeeSharesDue = exports.rpow = exports.entranceRateFeeSharesDue = exports.entranceRateFeeConfigArgs = exports.performanceFeeConfigArgs = exports.convertRateToScaledPerSecondRate = exports.managementFeeConfigArgs = exports.payoutSharesOutstandingForFeesArgs = exports.feeManagerConfigArgs = exports.encodeFunctionData = exports.encodeArgs = exports.secondsPerYear = exports.managementFeeScaleDecimal = exports.managementFeeScale = exports.managementFeeDigits = exports.sighash = void 0;
 const ethers_1 = require("ethers");
 const ethers_2 = require("@enzymefinance/ethers");
 const decimal_js_1 = require("decimal.js");
@@ -149,3 +149,22 @@ const getAddressArrayPolicyArgs = (ars) => {
     return encodeArgs(["address[]"], [ars]);
 };
 exports.getAddressArrayPolicyArgs = getAddressArrayPolicyArgs;
+const fullNumber = (x) => {
+    if (Math.abs(x) < 1.0) {
+        var e = parseInt(x.toString().split("e-")[1]);
+        if (e) {
+            x *= Math.pow(10, e - 1);
+            x = "0." + new Array(e).join("0") + x.toString().substring(2);
+        }
+    }
+    else {
+        var e = parseInt(x.toString().split("+")[1]);
+        if (e > 20) {
+            e -= 20;
+            x /= Math.pow(10, e);
+            x += new Array(e + 1).join("0");
+        }
+    }
+    return x;
+};
+exports.fullNumber = fullNumber;

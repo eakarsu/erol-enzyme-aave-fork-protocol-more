@@ -155,5 +155,5 @@ export const getDenominationBalance = async (
     const { comptrollerContract } = await getContracts(fundAddress, provider);
   
     const receipt = await comptrollerContract.redeemShares();
-    await receipt.wait();
+    return await receipt.wait();
   };

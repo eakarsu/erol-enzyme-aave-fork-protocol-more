@@ -462,7 +462,6 @@ export const walletAddressUserVaults = async (
  * @param address User address
  * @returns
  */
-
 export const getUserAddressInvestments = async (
   SUB_GRAPH_ENDPOINT: string,
   address: string
@@ -509,6 +508,13 @@ export const getUserAddressInvestments = async (
   }
 };
 
+
+/**
+ * 
+ * @param SUB_GRAPH_ENDPOINT Deployed subgraph http url
+ * @param fundId  Created fund address
+ * @returns Minimum and maximum investment amount
+ */
 export const minMaxDepositAmounts = async (
   SUB_GRAPH_ENDPOINT: string,
   fundId: string
@@ -545,6 +551,12 @@ export const minMaxDepositAmounts = async (
   }
 };
 
+/**
+ * 
+ * @param SUB_GRAPH_ENDPOINT Deployed subgraph http url
+ * @param comptrollerId  Fund comptroller address
+ * @returns Performance Fee
+ */
 export const performanceFee = async (
   SUB_GRAPH_ENDPOINT: string,
   comptrollerId: string
@@ -579,6 +591,13 @@ export const performanceFee = async (
   }
 };
 
+/**
+ * 
+ * @param SUB_GRAPH_ENDPOINT Deployed subgraph http url
+ * @param fundId Created fund address
+ * @returns {rate: entrance rate}
+ */
+
 export const entranceDirectBurnFees = async (
   SUB_GRAPH_ENDPOINT: string,
   fundId: string
@@ -606,6 +625,11 @@ export const entranceDirectBurnFees = async (
   }
 };
 
+/**
+ * Fund management fee set during creation.
+ * @param SUB_GRAPH_ENDPOINT  Deployed subgraph http url
+ * @param comptrollerId  Comptroller Address (id)
+ */
 export const managementFee = async (
   SUB_GRAPH_ENDPOINT: string,
   comptrollerId: string

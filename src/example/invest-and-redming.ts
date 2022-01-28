@@ -5,7 +5,6 @@ import {
   investFundDenomination,
 } from "../funds/withdrawal-deposits";
 
-
 /**
  * Approve Amount for investment
  * @param fundAddress  Fund location address
@@ -20,7 +19,6 @@ export const approveBeforeInvesting = async (
 ) => {
   try {
     amount = fullNumber(utils.hexlify(amount.toString()));
-
     if (amount == 0) return;
 
     return await approveForInvestment(fundAddress, provider, amount);
