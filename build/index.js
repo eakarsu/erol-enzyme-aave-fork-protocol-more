@@ -15,3 +15,5 @@ __exportStar(require("./utils/fund"), exports);
 __exportStar(require("./funds/create-fund"), exports);
 __exportStar(require("./subgraph/funds"), exports);
 __exportStar(require("./aave/index"), exports);
+__exportStar(require("./funds/withdrawal-deposits"), exports);
+__exportStar(require("./trading/investment-redeem"), exports);
