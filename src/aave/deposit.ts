@@ -1,57 +1,32 @@
-import {
-  web3,
-  LendingPoolABI,
-  ERC20ABI,
-  getLendingPoolAddress,
-  getLendingPoolCoreAddress,
-  myAccount,
-} from "./utils";
+// (i). Deposit collateral
 
-const referralCode = "0";
+import { ethers } from "ethers";
+import { aaveProvider } from "./AaveProvider";
 
-export const aaveDepositCollateral = async (
-  amount: string,
-  assetAddress: string
+export const deposit = async (
+  lendingPoolAddressproviderAddress: string,
+  provider: any,
+  signer: ethers.Wallet,
+  amount: number,
+  asset: string
 ) => {
-  // Account Address
-  const account = (await myAccount()).address;
+  const aaveProviderWrapper = await aaveProvider.connect(
+    lendingPoolAddressproviderAddress,
+    provider,
+    signer
+  );
 
-  // Amount to deposit in wei
-  const amountInWei = web3.utils.toWei(amount, "ether").toString();
+  if (aaveProviderWrapper.done) {
+    try {
+      const deposit = await aaveProvider.depositCollateral(
+        parseInt(ethers.utils.parseEther(amount.toString()).toString()).toString(),
+        asset,
+        signer
+      );
 
-  // const lpCoreAddress = await getLendingPoolAddress();
-  // // Approve the LendingPoolCore address with the DAI contract
-  // const daiContract = new web3.eth.Contract(ERC20ABI, assetAddress);
-
-  // let approve = daiContract.methods.approve(lpCoreAddress, amountInWei);
-  const gasPrice = await web3.eth.getGasPrice();
-
-  // await approve
-  //   .send({
-  //     from: account,
-  //     gasLimit: web3.utils.toHex(1000000),
-  //     gasPrice,
-  //     nonce: web3.utils.toHex(await web3.eth.getTransactionCount(account)),
-  //   })
-  //   .catch((e: any) => {
-  //     throw Error(`Error approving allowance: ${e.message}`);
-  //   });
-
-  // make the deposit transactions via lendingPool
-
-  const lpAddress = await getLendingPoolAddress();
-  const lpContract = new web3.eth.Contract(LendingPoolABI, lpAddress);
-  const deposit = lpContract.methods.deposit(assetAddress, amountInWei, 0);
-  const tx = await deposit
-    .send({
-      from: account,
-      gasLimit: web3.utils.toHex(1000000),
-      gasPrice,
-      nonce: web3.utils.toHex(await web3.eth.getTransactionCount(account)),
-    })
-    .catch((e: any) => {
-      throw Error(`Error depositing to the LendingPool contract: ${e.message}`);
-    });
-  console.log(tx);
-  console.log("success!");
+      console.log(deposit);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 };

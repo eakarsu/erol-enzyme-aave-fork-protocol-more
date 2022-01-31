@@ -1,8 +1,53 @@
 import { ethers, BigNumberish } from "ethers";
 import { AddressLike } from "@enzymefinance/ethers";
-import { AssetWhitelist, AssetBlacklist, AdapterBlacklist, AdapterWhitelist, PerformanceFee, MinMaxInvestment, ManagementFee, EntranceRateDirectFee } from "./../prep-abis";
+import { PerformanceFee, MinMaxInvestment, ManagementFee, EntranceRateDirectFee, AdapterBlacklist, AdapterWhitelist, AssetBlacklist, AssetWhitelist } from "./../prep-abis";
 export { PerformanceFee, ManagementFee, EntranceRateDirectFee, MinMaxInvestment, AssetBlacklist, AssetWhitelist, AdapterBlacklist, AdapterWhitelist, };
-export declare const createNewFund: (signer: ethers.Wallet, fundName: string, denominationAsset: string, timeLockInSeconds: number, feeManagerConfig: string, policyManagerConfigData: string, gaslimit: string, provider: any, address: string) => Promise<any>;
+export declare const processPolicyConfigurationData: (options: {
+    provider: any;
+    denominationAsset: string;
+    deposit: {
+        minimum: string;
+        maximum: string;
+    };
+    asset: {
+        whiteList: Array<string>;
+        blackList: Array<string>;
+    };
+    adpater: {
+        whiteList: Array<string>;
+        blackList: Array<string>;
+    };
+}) => Promise<string>;
+/**
+ *
+ * @param signer Authenticated Ethers wallet
+ * @param fundName  The name you are willing to assign to your fund
+ * @param denominationAsset  The base Denomination asset  for your fund
+ * @param timeLockInSeconds Time duration you are willing to lock your funds
+ * @param policyManagerConfigData
+ * @param gaslimit Limit of gas you are willing to spend
+ * @param provider  Ethers provider http provider authenticated
+ * @param feeConfig This gives the fees information all the object items must be as a percentage
+ * @returns
+ */
+export declare const createNewFund: (signer: ethers.Wallet, fundName: string, denominationAsset: string, timeLockInSeconds: number, gaslimit: string, provider: any, feeConfig?: {
+    managementFee: string;
+    performanceFee: string;
+    entranceFee: string;
+} | undefined, policyConfig?: {
+    deposit: {
+        minimum: string;
+        maximum: string;
+    };
+    asset: {
+        whiteList: Array<string>;
+        blackList: Array<string>;
+    };
+    adpater: {
+        whiteList: Array<string>;
+        blackList: Array<string>;
+    };
+} | undefined) => Promise<any>;
 /**
  * Rate is  number representing a 1%
  */

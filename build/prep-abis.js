@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AssetWhitelist = exports.AssetBlacklist = exports.AdapterWhitelist = exports.AggregatedDerivativePriceFeed = exports.SynthetixPriceFeed = exports.SynthetixAdapter = exports.RevertingPriceFeed = exports.PolicyManager = exports.PerformanceFee = exports.MinMaxInvestment = exports.MaxConcentration = exports.ManagementFee = exports.KyberAdapter = exports.InvestorWhitelist = exports.GuaranteedRedemption = exports.IntegrationManager = exports.FundDeployer = exports.FundActionsWrapper = exports.FeeManager = exports.EntranceRateDirectFee = exports.EntranceRateBurnFee = exports.Dispatcher = exports.Config = exports.ComptrollerLib = exports.CompoundAdapter = exports.CompoundPriceFeed = exports.ChainlinkPriceFeed = exports.BuySharesCallerWhitelist = exports.AuthUserExecutedSharesRequestorLib = exports.AuthUserExecutedSharesRequestorFactory = exports.TrackedAssetsAdapter = exports.UniswapV2Adapter = exports.UniswapV2PoolPriceFeed = exports.VaultLib = exports.YearnVaultV2Adapter = exports.YearnVaultV2PriceFeed = exports.UniswapV3Adapter = exports.ZeroExV2Adapter = exports.ValueInterpreter = exports.AdapterBlacklist = void 0;
+exports.AssetWhitelist = exports.AssetBlacklist = exports.AdapterWhitelist = exports.AggregatedDerivativePriceFeed = exports.SynthetixPriceFeed = exports.SynthetixAdapter = exports.RevertingPriceFeed = exports.PolicyManager = exports.PerformanceFee = exports.MinMaxInvestment = exports.MaxConcentration = exports.ManagementFee = exports.KyberAdapter = exports.InvestorWhitelist = exports.GuaranteedRedemption = exports.IntegrationManager = exports.FundDeployer = exports.FundActionsWrapper = exports.FeeManager = exports.EntranceRateDirectFee = exports.EntranceRateBurnFee = exports.Dispatcher = exports.Config = exports.ComptrollerLib = exports.CompoundAdapter = exports.CompoundPriceFeed = exports.ChainlinkPriceFeed = exports.BuySharesCallerWhitelist = exports.AuthUserExecutedSharesRequestorLib = exports.AuthUserExecutedSharesRequestorFactory = exports.TrackedAssetsAdapter = exports.UniswapV2Adapter = exports.UniswapV2PoolPriceFeed = exports.VaultLib = exports.YearnVaultV2Adapter = exports.YearnVaultV2PriceFeed = exports.UniswapV3Adapter = exports.ZeroExV2Adapter = exports.ValueInterpreter = exports.AdapterBlacklist = exports.AaveLendingPoolABI = exports.ERC20ABI = exports.ATokenABI = exports.AaveAddressProviderABI = void 0;
 const AdapterBlacklist_json_1 = __importDefault(require("./abis/AdapterBlacklist.json"));
 exports.AdapterBlacklist = AdapterBlacklist_json_1.default;
 const AdapterWhitelist_json_1 = __importDefault(require("./abis/AdapterWhitelist.json"));
@@ -84,3 +84,11 @@ const YearnVaultV2PriceFeed_json_1 = __importDefault(require("./abis/YearnVaultV
 exports.YearnVaultV2PriceFeed = YearnVaultV2PriceFeed_json_1.default;
 const ZeroExV2Adapter_json_1 = __importDefault(require("./abis/ZeroExV2Adapter.json"));
 exports.ZeroExV2Adapter = ZeroExV2Adapter_json_1.default;
+const AddressProvider_json_1 = __importDefault(require("./abis/aave/AddressProvider.json"));
+exports.AaveAddressProviderABI = AddressProvider_json_1.default;
+const AToken_json_1 = __importDefault(require("./abis/aave/AToken.json"));
+exports.ATokenABI = AToken_json_1.default;
+const ERC20_json_1 = __importDefault(require("./abis/aave/ERC20.json"));
+exports.ERC20ABI = ERC20_json_1.default;
+const LendingPool_json_1 = __importDefault(require("./abis/aave/LendingPool.json"));
+exports.AaveLendingPoolABI = LendingPool_json_1.default;
