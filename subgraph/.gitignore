@@ -1,11 +1,3 @@
-node_modules
-build
-build/
-DOC.md
-.env
-src/config/index.ts
-
-
 # Node dependencies.
 node_modules/
 
