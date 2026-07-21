@@ -4,3 +4,4 @@ build/
 DOC.md
 .env
 # src/config/index.ts
+.DS_Store

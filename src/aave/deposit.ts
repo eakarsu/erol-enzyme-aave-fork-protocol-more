@@ -2,6 +2,7 @@
 
 import { ethers } from "ethers";
 import { aaveProvider } from "./AaveProvider";
+import { assertMutationQuarantined } from "../safety/execution";
 
 export const deposit = async (
   lendingPoolAddressproviderAddress: string,
@@ -10,6 +11,7 @@ export const deposit = async (
   amount: number,
   asset: string
 ) => {
+  assertMutationQuarantined("Aave collateral deposit");
   const aaveProviderWrapper = await aaveProvider.connect(
     lendingPoolAddressproviderAddress,
     provider,

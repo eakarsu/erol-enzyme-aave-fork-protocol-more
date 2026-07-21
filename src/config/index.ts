@@ -1,5 +1,24 @@
-export const configs  = {
-    ADDRESS: "0x88757f2f99175387aB4C6a4b3067c77A695b0349",
-    PRIVATE_KEY: "0x2c283ea64fe7352dd1b1125723a260524e9ad0a6c0a8008b240f904265c0cfd2",
-    HTTP_URL: "https://kovan.infura.io/v3/99675269b87d4d1a95e121eaa24eac24"
+export interface RuntimeConfig {
+  rpcUrl: string;
+  privateKey: string;
+  subgraphEndpoint?: string;
+}
+
+/**
+ * Load credentials only at runtime. This repository never supplies defaults.
+ * Live transaction methods remain quarantined even when configuration exists.
+ */
+export function loadRuntimeConfig(environment: NodeJS.ProcessEnv = process.env): RuntimeConfig {
+  const rpcUrl = environment.ETHEREUM_RPC_URL;
+  const privateKey = environment.ETHEREUM_PRIVATE_KEY;
+
+  if (!rpcUrl || !privateKey) {
+    throw new Error('ETHEREUM_RPC_URL and ETHEREUM_PRIVATE_KEY are required; no credentials are bundled');
+  }
+
+  return {
+    privateKey,
+    rpcUrl,
+    subgraphEndpoint: environment.SUBGRAPH_ENDPOINT,
+  };
 }

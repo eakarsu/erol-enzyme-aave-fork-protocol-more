@@ -2,6 +2,7 @@
   
 import { ethers } from "ethers";
 import { VaultLib, ComptrollerLib}  from './../prep-abis'
+import { assertMutationQuarantined } from "../safety/execution";
 
 /**
  * 
@@ -86,6 +87,7 @@ export const getDenominationAllowance = async (
    * @returns 
    */
   export const approveForInvestment = async (fundAddress: string, provider: any, amount: any) => {
+    assertMutationQuarantined("Enzyme investment approval");
     const { assetContract, comptrollerContract } = await getContracts(
       fundAddress,
       provider
@@ -114,6 +116,7 @@ export const getDenominationAllowance = async (
     provider:  any,
     amount: any
   ) => {
+    assertMutationQuarantined("Enzyme fund investment");
     const { comptrollerContract } = await getContracts(fundAddress, provider);
   
     const receipt = await comptrollerContract.buyShares(
@@ -152,6 +155,7 @@ export const getDenominationBalance = async (
    * @param provider Provider to use. Ethers's jsonRpcProvider
    */
   export const redeemAllShares = async (fundAddress: string, provider: any) => {
+    assertMutationQuarantined("Enzyme share redemption");
     const { comptrollerContract } = await getContracts(fundAddress, provider);
   
     const receipt = await comptrollerContract.redeemShares();

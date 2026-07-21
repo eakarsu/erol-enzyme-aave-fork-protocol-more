@@ -1,5 +1,6 @@
 import { ethers } from "ethers";
 import {ERC20ABI, AaveLendingPoolABI, AaveAddressProviderABI}  from './../prep-abis'
+import { assertMutationQuarantined } from "../safety/execution";
 
 class AaveProvider {
   private _provider!: ethers.providers.JsonRpcProvider;
@@ -115,6 +116,7 @@ class AaveProvider {
     assetAddress: string,
     signer: ethers.Wallet
   ) {
+    assertMutationQuarantined("Aave collateral deposit");
     try {
       const referralCode = 0;
       let nonce = await this.provider.getTransactionCount(
@@ -178,6 +180,7 @@ class AaveProvider {
     interestRateMode: number,
     signer: ethers.Wallet
   ) {
+    assertMutationQuarantined("Aave asset borrow");
     try {
       const referralCode = "0";
 

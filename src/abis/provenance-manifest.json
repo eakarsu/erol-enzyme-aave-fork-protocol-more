@@ -1,0 +1,612 @@
+{
+  "schemaVersion": 1,
+  "retainedBaselineCommit": "7f39132a3a2f4e8b0c663149e20d7340650f8eef",
+  "note": "Enzyme deployment artifacts were reduced to address and ABI; original hashes and embedded metadata provenance are retained below. Exact Aave ABI origins were not recorded by the historical project.",
+  "artifacts": [
+    {
+      "path": "src/abis/AdapterBlacklist.json",
+      "address": "0x6C004Eb8C929F2e0679578bF4Bf13e434111b258",
+      "compiler": "0.6.12+commit.27d51765",
+      "compilationTarget": {
+        "contracts/release/extensions/policy-manager/policies/call-on-integration/AdapterBlacklist.sol": "AdapterBlacklist"
+      },
+      "originalSha256": "2931eca1ed2b9ad328ae0371010a05eb9823d39bb982754dfd545710e4dd9da1",
+      "sanitizedSha256": "71327e142eb5987f9a646982a2eb5a655b9343c961ac085f23c37ff85d8c9afd",
+      "sourceLicenses": [
+        "GPL-3.0",
+        "MIT"
+      ]
+    },
+    {
+      "path": "src/abis/AdapterWhitelist.json",
+      "address": "0xBd71Eb3D9dD18C0408a5b86Cc082B03F8e14A411",
+      "compiler": "0.6.12+commit.27d51765",
+      "compilationTarget": {
+        "contracts/release/extensions/policy-manager/policies/call-on-integration/AdapterWhitelist.sol": "AdapterWhitelist"
+      },
+      "originalSha256": "492daacb2d54720b0520daabad77a0e30444f3234afe6fb88fbdbc386d6d5d84",
+      "sanitizedSha256": "22ec17e9a5aa810cb0faeab20c364310fa45d19ff8fd8a20d5d6c18e930fb537",
+      "sourceLicenses": [
+        "GPL-3.0",
+        "MIT"
+      ]
+    },
+    {
+      "path": "src/abis/AggregatedDerivativePriceFeed.json",
+      "address": "0xd68b7940Cc796Bcc208d78CCb38b1608352E424A",
+      "compiler": "0.6.12+commit.27d51765",
+      "compilationTarget": {
+        "contracts/release/infrastructure/price-feeds/derivatives/AggregatedDerivativePriceFeed.sol": "AggregatedDerivativePriceFeed"
+      },
+      "originalSha256": "9de912d4d5b0e05df8082d54d5faa6b474f9279e38c2e8df7592541c48473ee4",
+      "sanitizedSha256": "241059ea0c95a750d7903bd73bb45e0e9cd4a9a948ab7a603896321577a4431c",
+      "sourceLicenses": [
+        "GPL-3.0"
+      ]
+    },
+    {
+      "path": "src/abis/AssetBlacklist.json",
+      "address": "0x649A77E062D06e94A1D2A232F7347820E3653778",
+      "compiler": "0.6.12+commit.27d51765",
+      "compilationTarget": {
+        "contracts/release/extensions/policy-manager/policies/call-on-integration/AssetBlacklist.sol": "AssetBlacklist"
+      },
+      "originalSha256": "783dc494b7194dc4de3e69b7950b4019b894a055ed3c86ed6f2f195bd7848e07",
+      "sanitizedSha256": "9e9741c66553294b4ab6100ea9a95eba23f96ab7a79d4e7091e3c6bb1e406f78",
+      "sourceLicenses": [
+        "GPL-3.0",
+        "MIT"
+      ]
+    },
+    {
+      "path": "src/abis/AssetWhitelist.json",
+      "address": "0xA13dbD93069F9AF3050F1535c01A372920207cA5",
+      "compiler": "0.6.12+commit.27d51765",
+      "compilationTarget": {
+        "contracts/release/extensions/policy-manager/policies/call-on-integration/AssetWhitelist.sol": "AssetWhitelist"
+      },
+      "originalSha256": "266565cf0be59a8168b1cf4b9dd7ff602944a63366c55c801655c3d379d36d10",
+      "sanitizedSha256": "74d0d7670a53dd68f55b0238c9a713dab5e14f076d5096d8dcc4899d2eaa4418",
+      "sourceLicenses": [
+        "GPL-3.0",
+        "MIT"
+      ]
+    },
+    {
+      "path": "src/abis/AuthUserExecutedSharesRequestorFactory.json",
+      "address": "0xb4F4F442cb2e725fE0FDd2F56dF2045712848ea3",
+      "compiler": "0.6.12+commit.27d51765",
+      "compilationTarget": {
+        "contracts/release/peripheral/shares-requestors/AuthUserExecutedSharesRequestorFactory.sol": "AuthUserExecutedSharesRequestorFactory"
+      },
+      "originalSha256": "8d5a13a4bd301a7e4c9b2ae25ec7419533852cb442a03209a4ebd1ede939db13",
+      "sanitizedSha256": "dfdf238d966f50cc0d3659bb4b4faf81da166d87186b0ab6855c6c040280812a",
+      "sourceLicenses": [
+        "GPL-3.0",
+        "MIT"
+      ]
+    },
+    {
+      "path": "src/abis/AuthUserExecutedSharesRequestorLib.json",
+      "address": "0x98A3C90a4F0015e5872549d7650f703949F9A32b",
+      "compiler": "0.6.12+commit.27d51765",
+      "compilationTarget": {
+        "contracts/release/peripheral/shares-requestors/AuthUserExecutedSharesRequestorLib.sol": "AuthUserExecutedSharesRequestorLib"
+      },
+      "originalSha256": "787886a3f82b73d6345bdcb78b64f0cf8920790e168df01774a2557f7a263d21",
+      "sanitizedSha256": "d08b6726ad8f32a756ba0b343f41e9155faea9f2fd3635be933f1bc00f4cd9b2",
+      "sourceLicenses": [
+        "GPL-3.0",
+        "MIT"
+      ]
+    },
+    {
+      "path": "src/abis/BuySharesCallerWhitelist.json",
+      "address": "0xA2bc1498E4Aa9bAF1BC0d2116f4B5447B05c1ad3",
+      "compiler": "0.6.12+commit.27d51765",
+      "compilationTarget": {
+        "contracts/release/extensions/policy-manager/policies/buy-shares/BuySharesCallerWhitelist.sol": "BuySharesCallerWhitelist"
+      },
+      "originalSha256": "4f9306ae09c09adcc77efab8d542ec1f8b2dcad19aa1d63568b7517d88d4f97c",
+      "sanitizedSha256": "2d58bb1517ffffc357798f2fb8a43a9386515b170e1d4e93feac77b27d6aab53",
+      "sourceLicenses": [
+        "GPL-3.0",
+        "MIT"
+      ]
+    },
+    {
+      "path": "src/abis/ChainlinkPriceFeed.json",
+      "address": "0x0681683F38D39dC8A6f84Ef3FFF58742fC32D8B7",
+      "compiler": "0.6.12+commit.27d51765",
+      "compilationTarget": {
+        "contracts/release/infrastructure/price-feeds/primitives/ChainlinkPriceFeed.sol": "ChainlinkPriceFeed"
+      },
+      "originalSha256": "7743cc49301de1a647e9a90e8a75dd084bce424d89c628e7cc0403f0454c8f89",
+      "sanitizedSha256": "c346a003f71a00896f2f0b552e9ffeb692147d07dc8d7c47484df5835f0c32a5",
+      "sourceLicenses": [
+        "GPL-3.0",
+        "MIT"
+      ]
+    },
+    {
+      "path": "src/abis/CompoundAdapter.json",
+      "address": "0xA44E75c06E1494E7e16ECC6454F1CB6cF2F0c472",
+      "compiler": "0.6.12+commit.27d51765",
+      "compilationTarget": {
+        "contracts/release/extensions/integration-manager/integrations/adapters/CompoundAdapter.sol": "CompoundAdapter"
+      },
+      "originalSha256": "973e9ee9166367bf42d8f7e66c2f2feb489bf385eb56fbf00c754fdcee51c9d9",
+      "sanitizedSha256": "eb4ec57b8eaa981b191b601a2a3f3a827735f77bcfad540a2f750738d0388a82",
+      "sourceLicenses": [
+        "GPL-3.0",
+        "MIT"
+      ]
+    },
+    {
+      "path": "src/abis/CompoundPriceFeed.json",
+      "address": "0xA018Aa6F8991CD495A21CaeFA1eEA72AA8bE4DAE",
+      "compiler": "0.6.12+commit.27d51765",
+      "compilationTarget": {
+        "contracts/release/infrastructure/price-feeds/derivatives/feeds/CompoundPriceFeed.sol": "CompoundPriceFeed"
+      },
+      "originalSha256": "e2ca6c64e8db1ab7cd5335c380880f2db33c9382901aa6c62780cd865afafac3",
+      "sanitizedSha256": "a7b2b8f63bc093748606e80eac71b9238abdd0cbdd24e50d7cd10a1349dde111",
+      "sourceLicenses": [
+        "GPL-3.0",
+        "MIT"
+      ]
+    },
+    {
+      "path": "src/abis/ComptrollerLib.json",
+      "address": "0xF525B711d91c04785851f5E91e541EF67091B9Bd",
+      "compiler": "0.6.12+commit.27d51765",
+      "compilationTarget": {
+        "contracts/release/core/fund/comptroller/ComptrollerLib.sol": "ComptrollerLib"
+      },
+      "originalSha256": "8d2c47da216e489a02ffdcc76ce201aa0adbbbad55770287040ef9cbe8392793",
+      "sanitizedSha256": "401da373f41017335e74235d1f21bd28e347e204b8f5fcc8bb71653498fae2c2",
+      "sourceLicenses": [
+        "GPL-3.0",
+        "MIT"
+      ]
+    },
+    {
+      "path": "src/abis/Config.json",
+      "address": "0x0000000000000000000000000000000000000000",
+      "compiler": null,
+      "compilationTarget": null,
+      "originalSha256": "82964e4bcc6aa18a8438bbd7b97f66893f21d1b5837cb9b04c39056a76058beb",
+      "sanitizedSha256": "19d54c863a32bc856755480862050bd8153fa684ab2e443aa1a673b6bf2b21e9",
+      "sourceLicenses": []
+    },
+    {
+      "path": "src/abis/Dispatcher.json",
+      "address": "0xa78DA40390f42aB3f3D29A6F58fD01f8317dfa4F",
+      "compiler": "0.6.12+commit.27d51765",
+      "compilationTarget": {
+        "contracts/persistent/dispatcher/Dispatcher.sol": "Dispatcher"
+      },
+      "originalSha256": "7bb91097f82a1c1800f01850593ca0b9a001a0f38bc9d9514e801b3468e0cb46",
+      "sanitizedSha256": "90bb3bce49a5e76548ea32b182a54c21221a10748dc32cb6fa476f8432a1fdd4",
+      "sourceLicenses": [
+        "GPL-3.0"
+      ]
+    },
+    {
+      "path": "src/abis/EntranceRateBurnFee.json",
+      "address": "0x49085a18d181eCdc124C504FbA4f9e15B14b9Da4",
+      "compiler": "0.6.12+commit.27d51765",
+      "compilationTarget": {
+        "contracts/release/extensions/fee-manager/fees/EntranceRateBurnFee.sol": "EntranceRateBurnFee"
+      },
+      "originalSha256": "a360a5be46e9904b2a063e60cf8a4e72ea5376ec043c75d68be04a2e78523d7e",
+      "sanitizedSha256": "c05c32d95bf838effa36a695b90b5f0ce082ac2dffd76fb64ce07223f10d39a0",
+      "sourceLicenses": [
+        "GPL-3.0",
+        "MIT"
+      ]
+    },
+    {
+      "path": "src/abis/EntranceRateDirectFee.json",
+      "address": "0x73B1b5836245632B91B9b5E4eBaa390B0b0A93F1",
+      "compiler": "0.6.12+commit.27d51765",
+      "compilationTarget": {
+        "contracts/release/extensions/fee-manager/fees/EntranceRateDirectFee.sol": "EntranceRateDirectFee"
+      },
+      "originalSha256": "cbbbbd63b643d227ec0d237fc7abcb90a19ca39e5e1eabf9f87b04856c313d42",
+      "sanitizedSha256": "69744401cd3604b2e42838261e9fc3c6c6d2d014b3366df14370ca32e2dceb25",
+      "sourceLicenses": [
+        "GPL-3.0",
+        "MIT"
+      ]
+    },
+    {
+      "path": "src/abis/FeeManager.json",
+      "address": "0x85B7c087a4ADCAc263C339464409f2Cc60119B5D",
+      "compiler": "0.6.12+commit.27d51765",
+      "compilationTarget": {
+        "contracts/release/extensions/fee-manager/FeeManager.sol": "FeeManager"
+      },
+      "originalSha256": "40c525b9cb5e17e2d508f761ea8a9ce24532bfffaccbe115b8cd35874238abb4",
+      "sanitizedSha256": "333336f7bdf28b0754d5771b25b4964cb614d327b590cb4d8c144769e458b1fd",
+      "sourceLicenses": [
+        "GPL-3.0",
+        "MIT"
+      ]
+    },
+    {
+      "path": "src/abis/FundActionsWrapper.json",
+      "address": "0x5E3a74E80936f61153E951449acC389F144e5393",
+      "compiler": "0.6.12+commit.27d51765",
+      "compilationTarget": {
+        "contracts/release/peripheral/FundActionsWrapper.sol": "FundActionsWrapper"
+      },
+      "originalSha256": "efb5eec9786fc1bb8f444c7128cb3cf540d03de54b6db477b9efdfe32bdd0883",
+      "sanitizedSha256": "98edb663857c7a6d858a8c7f4a05cd3e1070ac463f5cb2e27ad64b630999dff6",
+      "sourceLicenses": [
+        "GPL-3.0",
+        "MIT"
+      ]
+    },
+    {
+      "path": "src/abis/FundDeployer.json",
+      "address": "0x0B07e584494254d2E7E124587D22e61E97f2Bd4D",
+      "compiler": "0.6.12+commit.27d51765",
+      "compilationTarget": {
+        "contracts/release/core/fund-deployer/FundDeployer.sol": "FundDeployer"
+      },
+      "originalSha256": "f1ba74e44249afdae335726b6977edd0b9fde890f92be299dcd69386abeae2f2",
+      "sanitizedSha256": "cd0ec96df490cf5a809e31007cab6967a8f25c543c48d15ee6bc72daffe780be",
+      "sourceLicenses": [
+        "GPL-3.0"
+      ]
+    },
+    {
+      "path": "src/abis/GuaranteedRedemption.json",
+      "address": "0x493c7c8ef861641951cAB1972cD93C0fd168F549",
+      "compiler": "0.6.12+commit.27d51765",
+      "compilationTarget": {
+        "contracts/release/extensions/policy-manager/policies/call-on-integration/GuaranteedRedemption.sol": "GuaranteedRedemption"
+      },
+      "originalSha256": "d36873883d99fd270cd2646aef341e31c46d066d1bcc8a6b6c5e32d0502960a2",
+      "sanitizedSha256": "8af749500ef260313f87db42fbc8cdc394e235c87b11b35aa63222a552d918fd",
+      "sourceLicenses": [
+        "GPL-3.0",
+        "MIT"
+      ]
+    },
+    {
+      "path": "src/abis/IntegrationManager.json",
+      "address": "0xB2e5086B861F923C20273Cd6bcB2650756a2355C",
+      "compiler": "0.6.12+commit.27d51765",
+      "compilationTarget": {
+        "contracts/release/extensions/integration-manager/IntegrationManager.sol": "IntegrationManager"
+      },
+      "originalSha256": "7866db08f479391fba39afb2a784ccc745888d2b3ee5fe3cd8acd4578f5e6304",
+      "sanitizedSha256": "3acf9a337304d97921c4f48e3a5861b5aa69496d77dae8bb7613093513e03f26",
+      "sourceLicenses": [
+        "GPL-3.0",
+        "MIT"
+      ]
+    },
+    {
+      "path": "src/abis/InvestorWhitelist.json",
+      "address": "0x2692fC67B802247aC352c1D1d1f79cE5FF302989",
+      "compiler": "0.6.12+commit.27d51765",
+      "compilationTarget": {
+        "contracts/release/extensions/policy-manager/policies/buy-shares/InvestorWhitelist.sol": "InvestorWhitelist"
+      },
+      "originalSha256": "a363c320d5d8fcb1998ca79c147bc6e782587b05b747751b16eae95be031824a",
+      "sanitizedSha256": "1af13ab348399798b1dc94915673aada419f8746d1ceca6fa4d66ed8ae513b72",
+      "sourceLicenses": [
+        "GPL-3.0",
+        "MIT"
+      ]
+    },
+    {
+      "path": "src/abis/KyberAdapter.json",
+      "address": "0xe7Da104E28A4FA184EFa587892A2AbD506abbaE8",
+      "compiler": "0.6.12+commit.27d51765",
+      "compilationTarget": {
+        "contracts/release/extensions/integration-manager/integrations/adapters/KyberAdapter.sol": "KyberAdapter"
+      },
+      "originalSha256": "398326921db6e4319046c53ad41fc2dffcf85c3dabd5eef4d9f1381722524c14",
+      "sanitizedSha256": "2af5656ea0ff42ec3c269388b6479b7633ab883b016d4d2905e7be9c8bec9408",
+      "sourceLicenses": [
+        "GPL-3.0",
+        "MIT"
+      ]
+    },
+    {
+      "path": "src/abis/ManagementFee.json",
+      "address": "0x70e96849Ec43E1bFF92e99bc595A6D5c9D94cE79",
+      "compiler": "0.6.12+commit.27d51765",
+      "compilationTarget": {
+        "contracts/release/extensions/fee-manager/fees/ManagementFee.sol": "ManagementFee"
+      },
+      "originalSha256": "2cb7979332ffc1123f238111558575c2d2138248aab9e145c1b2de2c630b5a4d",
+      "sanitizedSha256": "3954326d4fdc66ab0d638af71d599616dc3744a960da6597802a75fba4183d09",
+      "sourceLicenses": [
+        "AGPL-3.0-or-later",
+        "GPL-3.0",
+        "MIT"
+      ]
+    },
+    {
+      "path": "src/abis/MaxConcentration.json",
+      "address": "0x730BcDB77746010A93477FDe15b7c91698757CCb",
+      "compiler": "0.6.12+commit.27d51765",
+      "compilationTarget": {
+        "contracts/release/extensions/policy-manager/policies/call-on-integration/MaxConcentration.sol": "MaxConcentration"
+      },
+      "originalSha256": "a003fee459b5014436c44d2666a91d3dc576b491f6e706834d7b0b011b9a838b",
+      "sanitizedSha256": "0368ebe6bd7cb31acc525981483308de0cd1786b618fdd8412e5b3256038375d",
+      "sourceLicenses": [
+        "GPL-3.0",
+        "MIT"
+      ]
+    },
+    {
+      "path": "src/abis/MinMaxInvestment.json",
+      "address": "0x494130537dC20261FCc6EE10a2879E4b42820599",
+      "compiler": "0.6.12+commit.27d51765",
+      "compilationTarget": {
+        "contracts/release/extensions/policy-manager/policies/buy-shares/MinMaxInvestment.sol": "MinMaxInvestment"
+      },
+      "originalSha256": "60da3b4c480f5a48544179487b98955c88de1fdd50437dada8fb40336437fb17",
+      "sanitizedSha256": "ebbfe1301fe3753c762acad2590db091a8a5b82a1aa3bd8042e15169eab4c80e",
+      "sourceLicenses": [
+        "GPL-3.0"
+      ]
+    },
+    {
+      "path": "src/abis/PerformanceFee.json",
+      "address": "0x4B4D64381cd2C0d0f1BE222Dd989f5eD2e46A6a0",
+      "compiler": "0.6.12+commit.27d51765",
+      "compilationTarget": {
+        "contracts/release/extensions/fee-manager/fees/PerformanceFee.sol": "PerformanceFee"
+      },
+      "originalSha256": "d4bb7f1da7cf351273b54ec934acca5e3d2e5c3acbac912311d81f44446f345b",
+      "sanitizedSha256": "76b6f20a01fa65df69241ae785c0c00f207372463353e29978fd291987708ce8",
+      "sourceLicenses": [
+        "GPL-3.0",
+        "MIT"
+      ]
+    },
+    {
+      "path": "src/abis/PolicyManager.json",
+      "address": "0x29F2d2b0Be47689656079a721A67B5892466df34",
+      "compiler": "0.6.12+commit.27d51765",
+      "compilationTarget": {
+        "contracts/release/extensions/policy-manager/PolicyManager.sol": "PolicyManager"
+      },
+      "originalSha256": "597eea0a4306be2bd47d88c34bf83ebcd8029a6af7eaa31fa63ee9a24d93cd82",
+      "sanitizedSha256": "b7d39bf680392bb6ed3d6171e976970e217fcecce37b7899980ca5ef22d7356f",
+      "sourceLicenses": [
+        "GPL-3.0",
+        "MIT"
+      ]
+    },
+    {
+      "path": "src/abis/RevertingPriceFeed.json",
+      "address": "0x1f434050a137BD349B87e79510Ccb7AaE0f23Ac5",
+      "compiler": "0.6.12+commit.27d51765",
+      "compilationTarget": {
+        "contracts/release/infrastructure/price-feeds/derivatives/feeds/RevertingPriceFeed.sol": "RevertingPriceFeed"
+      },
+      "originalSha256": "1825c346461b3746557e9f6a40e55a32382cdc220b2a115d499aae3050fd87f0",
+      "sanitizedSha256": "a8421be0298c872528ca28ba547b6a22cc67ccdb1c3b505c1db3895e00cbdfc8",
+      "sourceLicenses": [
+        "GPL-3.0"
+      ]
+    },
+    {
+      "path": "src/abis/SynthetixAdapter.json",
+      "address": "0x01db6aE89a0C45a0834Cd4e9Fd9e79EdaDe30fE4",
+      "compiler": "0.6.12+commit.27d51765",
+      "compilationTarget": {
+        "contracts/release/extensions/integration-manager/integrations/adapters/SynthetixAdapter.sol": "SynthetixAdapter"
+      },
+      "originalSha256": "882dabbd507e7798b1e06bbcf73401931d7cb460981c6578392197fcf2cad87c",
+      "sanitizedSha256": "c84bc370a8bbec342edfdb4d3ef14e6475f0105229834c410d64a048f90acf83",
+      "sourceLicenses": [
+        "GPL-3.0",
+        "MIT"
+      ]
+    },
+    {
+      "path": "src/abis/SynthetixPriceFeed.json",
+      "address": "0x8339e371839AAbE66c3F6441C319ad001f0Cf1f0",
+      "compiler": "0.6.12+commit.27d51765",
+      "compilationTarget": {
+        "contracts/release/infrastructure/price-feeds/derivatives/feeds/SynthetixPriceFeed.sol": "SynthetixPriceFeed"
+      },
+      "originalSha256": "b6b3255b6c0e10a46e38d5cfef8acb8fd4bc3efb8a89ae001f096cab1458e26f",
+      "sanitizedSha256": "6ad408960b0c6d2b8ced78a5f72bd75886989996513b0d8b8cb1d4c4cc34a067",
+      "sourceLicenses": [
+        "GPL-3.0",
+        "MIT"
+      ]
+    },
+    {
+      "path": "src/abis/TrackedAssetsAdapter.json",
+      "address": "0x19dC321F2ecf3d1df85Ee576A599f88881CA2966",
+      "compiler": "0.6.12+commit.27d51765",
+      "compilationTarget": {
+        "contracts/release/extensions/integration-manager/integrations/adapters/TrackedAssetsAdapter.sol": "TrackedAssetsAdapter"
+      },
+      "originalSha256": "3c210a6435cf5834bebec5784982c844c28bd457bf0881d359fe96a62ab9a6e3",
+      "sanitizedSha256": "aa8b3d32546d53d2b744fd6759de1efcaa573cbc9c690ae81ea26a09d4932bb7",
+      "sourceLicenses": [
+        "GPL-3.0",
+        "MIT"
+      ]
+    },
+    {
+      "path": "src/abis/UniswapV2Adapter.json",
+      "address": "0xab1A072A01891a02b456338F02da006Ca1ffE4a9",
+      "compiler": "0.6.12+commit.27d51765",
+      "compilationTarget": {
+        "contracts/release/extensions/integration-manager/integrations/adapters/UniswapV2Adapter.sol": "UniswapV2Adapter"
+      },
+      "originalSha256": "59296cbfde8469a50ec84d22ed9cccc18ded3c3d8475f21393d7868e5f078643",
+      "sanitizedSha256": "78d81f5f655cb34ede637dffee34bc992d02c0aa42270e504a4398ad60b933fd",
+      "sourceLicenses": [
+        "GPL-3.0",
+        "MIT"
+      ]
+    },
+    {
+      "path": "src/abis/UniswapV2PoolPriceFeed.json",
+      "address": "0xc29900C7D9cf53173bf8bB9131ca085ff202EBaD",
+      "compiler": "0.6.12+commit.27d51765",
+      "compilationTarget": {
+        "contracts/release/infrastructure/price-feeds/derivatives/feeds/UniswapV2PoolPriceFeed.sol": "UniswapV2PoolPriceFeed"
+      },
+      "originalSha256": "5e63d94a0dc620e085a865ce6a700e39b9d3784e021d71859b8c483d2cda57c4",
+      "sanitizedSha256": "599dc78d94e18c1300c9a478dfcf7dbdee09d4d782b5f666a8be179817837566",
+      "sourceLicenses": [
+        "GPL-3.0",
+        "MIT"
+      ]
+    },
+    {
+      "path": "src/abis/UniswapV3Adapter.json",
+      "address": "0x84B0825990DE76c130EEB04cCE00a94D6F63C8F6",
+      "compiler": "0.6.12+commit.27d51765",
+      "compilationTarget": {
+        "contracts/release/extensions/integration-manager/integrations/adapters/UniswapV3Adapter.sol": "UniswapV3Adapter"
+      },
+      "originalSha256": "acdc92c4412379b391b4fc238e7d1fc3a6f8e32e9924207e0b823aa6a97bd99a",
+      "sanitizedSha256": "409d81c187a2c66f2f301ac4942aeca98723778a9b17b5c27f5a61b12f6a865f",
+      "sourceLicenses": [
+        "GPL-3.0",
+        "MIT"
+      ]
+    },
+    {
+      "path": "src/abis/ValueInterpreter.json",
+      "address": "0xd8B43A70A42a1469cEA45Db6527caA52A4eB5F09",
+      "compiler": "0.6.12+commit.27d51765",
+      "compilationTarget": {
+        "contracts/release/infrastructure/value-interpreter/ValueInterpreter.sol": "ValueInterpreter"
+      },
+      "originalSha256": "3775d0db6becc4fe40d625d1c0377bf3097ac5b515af3a04ce8a1106ed661e49",
+      "sanitizedSha256": "e4f5b3d1e43b3c67cfa8612c04936ca01c99749ac0d5579b4d5cb5ae673db74a",
+      "sourceLicenses": [
+        "GPL-3.0",
+        "MIT"
+      ]
+    },
+    {
+      "path": "src/abis/VaultLib.json",
+      "address": "0x3Db22b7676C0a9E60cA5bb8A5D24EE8163f1cd27",
+      "compiler": "0.6.12+commit.27d51765",
+      "compilationTarget": {
+        "contracts/release/core/fund/vault/VaultLib.sol": "VaultLib"
+      },
+      "originalSha256": "c5841a4c6a4db7f07df1d0781503291b5cc28be1a8058f4f2d7a83cf5ea245e5",
+      "sanitizedSha256": "7f4b5e7f32f63b6fb4001367d6a015be0b096d3003fd1b0e2a2a476dcbaf8fee",
+      "sourceLicenses": [
+        "GPL-3.0",
+        "MIT"
+      ]
+    },
+    {
+      "path": "src/abis/YearnVaultV2Adapter.json",
+      "address": "0x0036F86f28544134E27CC84ED42c1AE604B0B263",
+      "compiler": "0.6.12+commit.27d51765",
+      "compilationTarget": {
+        "contracts/release/extensions/integration-manager/integrations/adapters/YearnVaultV2Adapter.sol": "YearnVaultV2Adapter"
+      },
+      "originalSha256": "5a9f85cf6a807f83e7e4d7d0519abad6016897f60d314473a3a3694f68a81100",
+      "sanitizedSha256": "16c344a26a1fe8e17b26f02fd95b0c2dbb1f31bd96a173d21aa0cb3591130258",
+      "sourceLicenses": [
+        "GPL-3.0",
+        "MIT"
+      ]
+    },
+    {
+      "path": "src/abis/YearnVaultV2PriceFeed.json",
+      "address": "0xaa4927a9500abd367a5c737a809a4bcbfe51802c",
+      "compiler": "0.6.12+commit.27d51765",
+      "compilationTarget": {
+        "contracts/release/infrastructure/price-feeds/derivatives/feeds/YearnVaultV2PriceFeed.sol": "YearnVaultV2PriceFeed"
+      },
+      "originalSha256": "98c79ffde1e0c4f3750ccda92eb6e7254fa42ed86473b274eb352a65e4ba5ad5",
+      "sanitizedSha256": "9625397d279d12dd829d8e7687649efacf7fdb69e7388d0b265be2f4be9978ea",
+      "sourceLicenses": [
+        "GPL-3.0",
+        "MIT"
+      ]
+    },
+    {
+      "path": "src/abis/ZeroExV2Adapter.json",
+      "address": "0x058E87AB6C2600fD772F9F2e880156631396947c",
+      "compiler": "0.6.12+commit.27d51765",
+      "compilationTarget": {
+        "contracts/release/extensions/integration-manager/integrations/adapters/ZeroExV2Adapter.sol": "ZeroExV2Adapter"
+      },
+      "originalSha256": "df398735ece685621814fc7e3a05837cf80dc04d18ace15fa8519362abab25b1",
+      "sanitizedSha256": "c94d7e7bcc4f5fa53a627a4cdbb88e146d254d50a123fa2a6d82e95bf5ed45a3",
+      "sourceLicenses": [
+        "GPL-3.0",
+        "MIT"
+      ]
+    },
+    {
+      "path": "src/abis/aave/AToken.json",
+      "address": null,
+      "compiler": null,
+      "compilationTarget": null,
+      "originalSha256": "2bf9db20ad935f9f31ffc321243febd3f4242c081f898a8b49ace219448f8bda",
+      "sanitizedSha256": "2bf9db20ad935f9f31ffc321243febd3f4242c081f898a8b49ace219448f8bda",
+      "sourceLicenses": []
+    },
+    {
+      "path": "src/abis/aave/AddressProvider.json",
+      "address": null,
+      "compiler": null,
+      "compilationTarget": null,
+      "originalSha256": "6c61d3405a2c577c5810211024f89a2a5cfc05b93d207461edec45a300a511c5",
+      "sanitizedSha256": "6c61d3405a2c577c5810211024f89a2a5cfc05b93d207461edec45a300a511c5",
+      "sourceLicenses": []
+    },
+    {
+      "path": "src/abis/aave/DAI.json",
+      "address": null,
+      "compiler": null,
+      "compilationTarget": null,
+      "originalSha256": "9214f6faf664df9e6d1ccc5e567f3e4d4c0347a6a5657474c95e4ef6442884ad",
+      "sanitizedSha256": "9214f6faf664df9e6d1ccc5e567f3e4d4c0347a6a5657474c95e4ef6442884ad",
+      "sourceLicenses": []
+    },
+    {
+      "path": "src/abis/aave/ERC20.json",
+      "address": null,
+      "compiler": null,
+      "compilationTarget": null,
+      "originalSha256": "3a3dc3f007528c97379b6e62521e8337ac76e701e549d98316194f9241ce489d",
+      "sanitizedSha256": "3a3dc3f007528c97379b6e62521e8337ac76e701e549d98316194f9241ce489d",
+      "sourceLicenses": []
+    },
+    {
+      "path": "src/abis/aave/LendingPool.json",
+      "address": null,
+      "compiler": null,
+      "compilationTarget": null,
+      "originalSha256": "b96791479f2a9fd431355ad5e01b449c54599661a69378d0e5f8d4ee5869e073",
+      "sanitizedSha256": "b96791479f2a9fd431355ad5e01b449c54599661a69378d0e5f8d4ee5869e073",
+      "sourceLicenses": []
+    },
+    {
+      "path": "src/abis/aave/PriceOracle.json",
+      "address": null,
+      "compiler": null,
+      "compilationTarget": null,
+      "originalSha256": "fdb4bb163eae56285c63f3187c92ca1063b03bf6e2512af46f3427ca37cdb443",
+      "sanitizedSha256": "fdb4bb163eae56285c63f3187c92ca1063b03bf6e2512af46f3427ca37cdb443",
+      "sourceLicenses": []
+    }
+  ]
+}

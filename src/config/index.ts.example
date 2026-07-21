@@ -1,5 +1,0 @@
-export const configs  = {
-    ADDRESS: "0x.......",
-    PRIVATE_KEY: "0x.......................",
-    HTTP_URL: "infura-provider-http-link"
-}

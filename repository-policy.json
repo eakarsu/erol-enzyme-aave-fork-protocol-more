@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "classification": "broken-inert-unsafe",
+  "decision": "quarantine-as-paper-only-reference",
+  "productBoundary": "deterministic-paper-safety-harness-only",
+  "repository": "https://github.com/eakarsu/erol-enzyme-aave-fork-protocol-more",
+  "retainedBaselineCommit": "7f39132a3a2f4e8b0c663149e20d7340650f8eef",
+  "maintenanceOwner": "repository-owner:eakarsu",
+  "securityPatchOwner": "repository-owner:eakarsu",
+  "historicalPackage": "@devngeni/protocol@1.0.16",
+  "licenseStatus": "unresolved-do-not-publish-or-redistribute",
+  "supportedActivities": ["source-inspection", "clean-build", "paper-simulation"],
+  "unsupportedActivities": [
+    "account-funding",
+    "live-aave-operation",
+    "live-enzyme-operation",
+    "package-publishing",
+    "production-use"
+  ],
+  "credentialStatus": "removed-from-working-tree-assume-compromised-in-history",
+  "updateStrategy": "frozen-manual-review-no-automatic-merges",
+  "reviewCadence": "annual-and-before-any-reuse"
+}

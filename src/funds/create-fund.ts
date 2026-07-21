@@ -23,6 +23,7 @@ import {
   getMinMaxDepositPolicyArgs,
   getAddressArrayPolicyArgs,
 } from "./../utils/fund";
+import { assertMutationQuarantined } from "../safety/execution";
 
 export {
   PerformanceFee,
@@ -167,6 +168,7 @@ export const createNewFund = async (
     };
   }
 ) => {
+  assertMutationQuarantined("Enzyme fund creation");
   const nonce = await provider.getTransactionCount(signer.address, "pending");
 
   /**
@@ -176,11 +178,12 @@ export const createNewFund = async (
 
   let feeArgsData = utils.hexlify("0x");
   let policyConfigData  = utils.hexlify("0x");
-  if (feeConfig) {
+  const configuredFees = feeConfig;
+  if (configuredFees) {
     let feeManagerSettingsData = [
-      getManagementFees(feeConfig.managementFee),
-      getEntranceRateFeeConfigArgs(feeConfig.entranceFee),
-      getPerformanceFees(feeConfig.performanceFee, 12),
+      getManagementFees(configuredFees!.managementFee),
+      getEntranceRateFeeConfigArgs(configuredFees!.entranceFee),
+      getPerformanceFees(configuredFees!.performanceFee, 12),
     ]; // value configurations
     let fees = [
       ManagementFee.address,

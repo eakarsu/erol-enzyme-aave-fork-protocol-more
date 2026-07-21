@@ -4,6 +4,7 @@ import {
   approveForInvestment,
   investFundDenomination,
 } from "./../funds/withdrawal-deposits";
+import { assertMutationQuarantined } from "../safety/execution";
 
 
 /**
@@ -18,6 +19,7 @@ export const approveBeforeInvesting = async (
   provider: any,
   amount: number
 ) => {
+  assertMutationQuarantined("Enzyme investment approval");
   try {
     amount = fullNumber(utils.hexlify(amount.toString()));
 
@@ -33,14 +35,14 @@ export const invest = async (
   signer: ethers.Wallet,
   amountToInvest: number
 ) => {
+  assertMutationQuarantined("Enzyme fund investment");
   try {
-      if (amount == 0) return;
-    var amount = fullNumber(utils.hexlify(amountToInvest.toString()));
+    const amount = fullNumber(utils.hexlify(amountToInvest.toString()));
+    if (amount == 0) return;
 
     return await investFundDenomination(fundAddress, signer.address, provider, amount);
   } catch (e: any) {
       return e;
   }
 };
-
 

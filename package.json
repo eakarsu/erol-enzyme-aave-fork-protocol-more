@@ -1,38 +1,35 @@
 {
   "name": "@devngeni/protocol",
   "version": "1.0.16",
-  "description": "The Radar dapp, package fork",
-  "main": "./build/index.js",
-  "types": "./build/index.d.ts",
+  "private": true,
+  "description": "Quarantined historical Enzyme/Aave integration reference with a paper-only safety harness",
+  "main": "./build/paper/index.js",
+  "types": "./build/paper/index.d.ts",
   "files": [
     "build/**/*"
   ],
   "scripts": {
-    "clean": "del ./build/*",
-    "build": "npm run clean && tsc ",
-    "dev": "ts-node-dev src/example/index.ts",
-    "getEth": "ts-node-dev src/getSomeEth.ts",
-    "testAave": "ts-node-dev src/example/aave.ts",
-    "pub": "npm version patch && npm run build && npm publish --access public"
+    "clean": "node scripts/clean-build.js",
+    "build": "npm run clean && tsc",
+    "dev": "npm run paper:demo",
+    "paper:demo": "npm run build && node build/example/paper.js",
+    "test": "npm run build && node test/paper-safety.test.js && npm run quarantine:check",
+    "quarantine:check": "node scripts/check-quarantine.js",
+    "getEth": "node scripts/deny-live-action.js account-funding",
+    "testAave": "node scripts/deny-live-action.js aave-live-example",
+    "pub": "node scripts/deny-live-action.js package-publish"
   },
   "repository": {
     "type": "git",
-    "url": "ithub.com/devNgeni/erol-enzyme-aave-fork-protocol.git"
+    "url": "https://github.com/eakarsu/erol-enzyme-aave-fork-protocol-more.git"
   },
   "author": "Omambia M. Dauglous",
-  "license": "MIT",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=16"
+  },
   "devDependencies": {
     "@types/node": "^16.11.7",
-    "del-cli": "^4.0.1",
-    "ts-node-dev": "^1.1.8",
-    "typescript": "^4.4.4"
-  },
-  "dependencies": {
-    "@aave/protocol-js": "^4.3.0",
-    "@enzymefinance/ethers": "^1.0.10",
-    "@enzymefinance/protocol": "^3.0.1",
-    "axios": "^0.24.0",
-    "ethers": "^5.5.1",
-    "web3": "^1.6.1"
+    "typescript": "^4.9.5"
   }
 }
