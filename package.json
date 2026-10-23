@@ -13,7 +13,7 @@
     "build": "npm run clean && tsc",
     "dev": "npm run paper:demo",
     "paper:demo": "npm run build && node build/example/paper.js",
-    "test": "npm run build && node test/paper-safety.test.js && npm run quarantine:check",
+    "test": "npm run build && node test/paper-safety.test.js && node test/paper-insights.test.js && npm run quarantine:check",
     "quarantine:check": "node scripts/check-quarantine.js",
     "getEth": "node scripts/deny-live-action.js account-funding",
     "testAave": "node scripts/deny-live-action.js aave-live-example",
